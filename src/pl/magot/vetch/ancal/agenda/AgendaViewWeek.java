@@ -37,11 +37,13 @@ public class AgendaViewWeek extends AgendaView
 		llayParentWeek.setLayoutParams(layParams);
 	}
 	
+	@Override
 	public int GetViewType()
 	{
 		return viewMode.WEEK;
 	}
 	
+	@Override
 	public int GetViewIndex()
 	{
 		return 2;
@@ -55,6 +57,7 @@ public class AgendaViewWeek extends AgendaView
 		}
   };
 	
+	@Override
 	public void Rebuild()
 	{
 		llayParent.removeAllViews();

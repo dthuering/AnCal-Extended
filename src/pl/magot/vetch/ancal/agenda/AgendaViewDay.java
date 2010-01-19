@@ -49,16 +49,19 @@ public class AgendaViewDay extends AgendaView
 		iSpaceWidthUSTimeMark = ViewTodayItemAppointment.GetSpaceWidthUSTimeMark(mpt);
 	}
 
+	@Override
 	public int GetViewType()
 	{
 		return viewMode.DAY;
 	}
 	
+	@Override
 	public int GetViewIndex()
 	{
 		return 1;
 	}
 
+	@Override
 	public void Rebuild()
 	{
 		llayParent.removeAllViews();

@@ -38,11 +38,13 @@ public class AgendaViewMonth extends AgendaView
 		llayParentMonth.setLayoutParams(layParams);		
 	}
 	
+	@Override
 	public int GetViewType()
 	{
 		return viewMode.MONTH;
 	}
 	
+	@Override
 	public int GetViewIndex()
 	{
 		return 3;
@@ -56,6 +58,7 @@ public class AgendaViewMonth extends AgendaView
 		}
   };
 	
+	@Override
 	public void Rebuild()
 	{
 		llayParent.removeAllViews();

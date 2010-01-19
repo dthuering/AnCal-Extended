@@ -333,7 +333,8 @@ public class ActivityAppointment extends CommonActivity
 			CloseActivity(dataTable);
   }
   
-  protected void onActivityResult(int requestCode, int resultCode, Intent data)
+  @Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
   {
   	super.onActivityResult(requestCode, resultCode, data);
   	  	
