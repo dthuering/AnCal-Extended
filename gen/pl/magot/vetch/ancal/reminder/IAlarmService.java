@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: D:\\_myWork_\\AnCal\\src\\pl\\magot\\vetch\\ancal\\reminder\\IAlarmService.aidl
+ * Original file: D:\\_android_\\ancal\\src\\pl\\magot\\vetch\\ancal\\reminder\\IAlarmService.aidl
  */
 package pl.magot.vetch.ancal.reminder;
 import java.lang.String;

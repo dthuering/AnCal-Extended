@@ -69,21 +69,25 @@
 		    
 			<Button android:id="@+id/btnSetViewToday" android:text="@string/labViewToday"
         style="?android:attr/buttonStyleSmall"
+        android:paddingLeft="12sp" android:paddingRight="12sp"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"/>		    
 
 			<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	    		android:orientation="horizontal" android:layout_width="12dp" android:layout_height="wrap_content"/>
+	    	android:orientation="horizontal" android:layout_width="12dp" android:layout_height="wrap_content"/>
 
 			<Button android:id="@+id/btnSetViewDay" android:text="@string/labViewDay"
         style="?android:attr/buttonStyleSmall"
+        android:paddingLeft="12sp" android:paddingRight="12sp"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"/>		    
 
 			<Button android:id="@+id/btnSetViewWeek" android:text="@string/labViewWeek"
         style="?android:attr/buttonStyleSmall"
+        android:paddingLeft="12sp" android:paddingRight="12sp"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"/>		    
 
 			<Button android:id="@+id/btnSetViewMonth" android:text="@string/labViewMonth"
         style="?android:attr/buttonStyleSmall"
+        android:paddingLeft="12sp" android:paddingRight="12sp"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"/>		    
 
 			<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
