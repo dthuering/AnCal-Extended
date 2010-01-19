@@ -30,71 +30,59 @@ public class AlarmDialog extends CommonActivity
 			this.vecAlarmItems = vecAlarmItems; 
 		}
 		
-		@Override
 		public int getCount()
 		{
 			return vecAlarmItems.size();
 		}
 		
-		@Override
 		public Object getItem(int position)
 		{
 			return vecAlarmItems.get(position);
 		}
 		
-		@Override
 		public long getItemId(int position)
 		{
 			return position;
 		}
 				
-		@Override
 		public View getView(int position, View convertView, ViewGroup parent)
 		{
       return vecAlarmItems.get(position).getView();
 		}
 		
-		@Override
 		public void registerDataSetObserver(DataSetObserver observer)
 		{
 		}
 		
-		@Override
 		public void unregisterDataSetObserver(DataSetObserver arg0)
 		{
 		}
 		
-		@Override
 		public boolean areAllItemsEnabled()
 		{
 			return true;
 		}
 
-		@Override
 		public boolean isEnabled(int position)
 		{
 			return true;
 		}
 
-		@Override
 		public int getItemViewType(int position)
 		{
 			return 0;
 		}
 
-		@Override
 		public int getViewTypeCount()
 		{
 			return 1;
 		}
 
-		@Override
 		public boolean hasStableIds()
 		{
 			return true;
 		}
 
-		@Override
 		public boolean isEmpty()
 		{
 			return (vecAlarmItems.size() == 0);
@@ -330,12 +318,10 @@ public class AlarmDialog extends CommonActivity
 	@SuppressWarnings("all")
   private AdapterView.OnItemSelectedListener mListViewOnItemSelected = new AdapterView.OnItemSelectedListener()
   {
-		@Override
 		public void onItemSelected(AdapterView parent, View v, int position, long id)
 		{
 			UpdateBottomButtonsState();
 		}
-		@Override
 		public void onNothingSelected(AdapterView arg0)
 		{
 			UpdateBottomButtonsState();
@@ -410,7 +396,6 @@ public class AlarmDialog extends CommonActivity
 	
 	private View.OnClickListener mBtnOnClick_CLEAR = new View.OnClickListener()
 	{
-		@Override
 		public void onClick(View arg0)
 		{
 			AlarmDialogDataItem item = getSelectedAlarmItemToProcess();
@@ -425,7 +410,6 @@ public class AlarmDialog extends CommonActivity
 
 	private View.OnClickListener mBtnOnClick_SNOOZE = new View.OnClickListener()
 	{
-		@Override
 		public void onClick(View arg0)
 		{
 			AlarmDialogDataItem item = getSelectedAlarmItemToProcess();
@@ -467,7 +451,6 @@ public class AlarmDialog extends CommonActivity
 	
 	private View.OnClickListener mBtnOnClick_OPEN = new View.OnClickListener()
 	{
-		@Override
 		public void onClick(View arg0)
 		{
 			AlarmDialogDataItem item = getSelectedAlarmItemToProcess();

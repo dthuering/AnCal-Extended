@@ -133,6 +133,7 @@ s += DateFormat.format("EEEE, dd-MM-yyyy, ", GetRepeat().GetEndOnDate()) + "\n";
 	}
 */
 	
+	@Override
 	public boolean Validate()
 	{
 		if (sSubject.length() > 0)

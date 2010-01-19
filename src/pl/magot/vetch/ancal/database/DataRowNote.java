@@ -42,6 +42,7 @@ public class DataRowNote extends DataRow
 	}
 	
 	//methods
+	@Override
 	public String toString()
 	{
 		String s = "";
@@ -49,6 +50,7 @@ public class DataRowNote extends DataRow
 		return s;
 	}
 	
+	@Override
 	public boolean Validate()
 	{
 		if (sSubject.length() > 0)

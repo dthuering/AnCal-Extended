@@ -15,7 +15,6 @@ public class AlarmDataView
 	//Comparator type for appointments
 	public class ApptsItemsComparator implements Comparator<AlarmDataViewItem>
 	{
-		@Override
 		public int compare(AlarmDataViewItem item1, AlarmDataViewItem item2)
 		{
 			if (item1.IsOverdue() || item2.IsOverdue())
@@ -64,7 +63,6 @@ public class AlarmDataView
 	//Comparator type for tasks
 	public class TasksItemsComparator implements Comparator<AlarmDataViewItem>
 	{
-		@Override
 		public int compare(AlarmDataViewItem item1, AlarmDataViewItem item2)
 		{
 			if (item1.lPriority == item2.lPriority)

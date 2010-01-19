@@ -14,7 +14,6 @@ public class DataViewNote extends DataView
 	//Comparator type
 	public class RowsComparator implements Comparator<DataViewItem>
 	{
-		@Override
 		public int compare(DataViewItem item1, DataViewItem item2)
 		{
 			String s1 = item1.sSubject;

@@ -41,11 +41,13 @@ public class DataRowAlarm extends DataRow
 	}
 		
 	//methods
+	@Override
 	public String toString()
 	{
 		return "";
 	}
 	
+	@Override
 	public boolean Validate()
 	{
 		return true;

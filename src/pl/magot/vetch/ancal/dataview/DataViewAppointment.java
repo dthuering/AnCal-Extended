@@ -36,7 +36,6 @@ public class DataViewAppointment extends DataView
 	//Comparator type
 	public class RowsComparator implements Comparator<DataViewItem>
 	{
-		@Override
 		public int compare(DataViewItem item1, DataViewItem item2)
 		{
 			date1cmp.setTimeInMillis(item1.GetStartDateAsLong());
