@@ -22,6 +22,7 @@ public class ViewWeekDayItem extends View
 	{
 		public int iHour = -1;
 		public int iMinute = -1;
+		@SuppressWarnings("unused")
 		public int iDurationInMinutes = 0;
 	}
 
@@ -61,7 +62,7 @@ public class ViewWeekDayItem extends View
 	private Calendar calDate = Calendar.getInstance();
 	private String sStrDayNr = "";
 	private String sStrDayName = "";
-	private LayoutParams lparamsItem = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);	
+	private LayoutParams lparamsItem = new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);	
 		
 	//methods
 	public ViewWeekDayItem(Context context, int iHeaderHeight)
@@ -168,6 +169,7 @@ public class ViewWeekDayItem extends View
 		return (int)(-mpt.ascent() + mpt.descent());
 	}
 		
+	@Override
 	protected void onFocusChanged(boolean gainFocus, int direction, Rect previouslyFocusedRect)
 	{
 		super.onFocusChanged(gainFocus, direction, previouslyFocusedRect);
@@ -302,7 +304,7 @@ public class ViewWeekDayItem extends View
 
 			//draw time item
 			final float fItemPosY = iViewTop + (fHourItemHeight * (item.iHour - iStartHour));
-			final float fMinuteOffset = (fHourItemHeight / 60) * (float)item.iMinute;				
+			final float fMinuteOffset = (fHourItemHeight / 60) * item.iMinute;				
 			int iTimeItemTop = (int)(fItemPosY + fMinuteOffset);
 
 			//correct item position if out of time range
@@ -322,6 +324,7 @@ public class ViewWeekDayItem extends View
 		}
 	}
 	
+	@Override
 	protected void onDraw(Canvas canvas)
 	{
 		super.onDraw(canvas);
@@ -335,6 +338,7 @@ public class ViewWeekDayItem extends View
 		drawHourItems(canvas, bFocused);
 	}
 		
+	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event)
 	{
 		boolean bResult = super.onKeyDown(keyCode, event);	
@@ -356,7 +360,8 @@ public class ViewWeekDayItem extends View
   	return (this.isFocused() || bTouchedDown);
   }
 	
-  public boolean onTouchEvent(MotionEvent event)
+  @Override
+	public boolean onTouchEvent(MotionEvent event)
   {
   	boolean bHandled = false;
   	if (event.getAction() == MotionEvent.ACTION_DOWN)

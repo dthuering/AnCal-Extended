@@ -35,8 +35,8 @@ public class AlarmDialogDataItem
 	      mImage.setImageResource(R.drawable.arrowright);
 	      mImage.setPadding(2, 2, 2, 0);
 	      //add view
-	      addView(mImage, new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-	      addView(mText, new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+	      addView(mImage, new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
+	      addView(mText, new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
 	      //set state
 	      setAlarmItemSelected(false);
 	  }

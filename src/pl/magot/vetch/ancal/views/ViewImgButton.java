@@ -25,6 +25,7 @@ public class ViewImgButton extends Button
 		super(context, attrs);
 	}
 
+	@Override
 	protected void onDraw(Canvas canvas)
 	{
 		super.onDraw(canvas);

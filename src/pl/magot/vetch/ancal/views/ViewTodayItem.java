@@ -79,6 +79,7 @@ public class ViewTodayItem extends View
 		this.itemClick = itemClick;	
 	}
 		
+	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
 	{
     setMeasuredDimension(measureWidth(widthMeasureSpec), measureHeight(heightMeasureSpec));				 
@@ -136,6 +137,7 @@ public class ViewTodayItem extends View
     return result;
   }
   
+	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event)
 	{
 		boolean bResult = super.onKeyDown(keyCode, event);	
@@ -146,6 +148,7 @@ public class ViewTodayItem extends View
 		return bResult;
 	}
  
+	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event)
 	{
 		boolean bResult = super.onKeyUp(keyCode, event);
@@ -165,12 +168,14 @@ public class ViewTodayItem extends View
 		canvas.drawRect(rt, mpt);		
 	}
 		
+	@Override
 	protected void onFocusChanged(boolean gainFocus, int direction, Rect previouslyFocusedRect)
 	{
 		super.onFocusChanged(gainFocus, direction, previouslyFocusedRect);
 		invalidate();
 	}
 	
+	@Override
 	protected void onDraw(Canvas canvas)
 	{
 		super.onDraw(canvas);				
@@ -251,7 +256,8 @@ public class ViewTodayItem extends View
   	return (this.isFocused() || bTouchedDown);
   }
 	
-  public boolean onTouchEvent(MotionEvent event)
+  @Override
+	public boolean onTouchEvent(MotionEvent event)
   {
   	boolean bHandled = false;
   	if (event.getAction() == MotionEvent.ACTION_DOWN)

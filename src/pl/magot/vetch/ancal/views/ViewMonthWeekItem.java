@@ -37,7 +37,7 @@ public class ViewMonthWeekItem extends View
 	protected Paint mpt = null;
 	protected OnItemClick itemClick = null;
 	private boolean bEnableDaysHeader = false;
-	private LayoutParams lparamsItem = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+	private LayoutParams lparamsItem = new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
 
 	//fields
 	private String sWeekNr = "";
@@ -90,6 +90,7 @@ public class ViewMonthWeekItem extends View
 		this.itemClick = itemClick;	
 	}
 
+	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event)
 	{
 		boolean bResult = super.onKeyDown(keyCode, event);	
@@ -106,6 +107,7 @@ public class ViewMonthWeekItem extends View
 				itemClick.OnClick(this);	
 	}	
 	
+	@Override
 	protected void onFocusChanged(boolean gainFocus, int direction, Rect previouslyFocusedRect)
 	{
 		super.onFocusChanged(gainFocus, direction, previouslyFocusedRect);
@@ -300,6 +302,7 @@ public class ViewMonthWeekItem extends View
 		src.right = src.left + iWeekDayWidth - iMargin - iMargin;
 	}
 		
+	@Override
 	protected void onDraw(Canvas canvas)
 	{
 		super.onDraw(canvas);
@@ -352,7 +355,8 @@ public class ViewMonthWeekItem extends View
   	return (this.isFocused() || bTouchedDown);
   }
 	
-  public boolean onTouchEvent(MotionEvent event)
+  @Override
+	public boolean onTouchEvent(MotionEvent event)
   {
   	boolean bHandled = false;
   	if (event.getAction() == MotionEvent.ACTION_DOWN)

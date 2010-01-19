@@ -89,6 +89,7 @@ public class ViewTodayItemAppointment extends ViewTodayItem
 		return (int)mpt.measureText(sStrUSTimeMark);		
 	}	
 	
+	@Override
 	protected void onFocusChanged(boolean gainFocus, int direction, Rect previouslyFocusedRect)
 	{
 		super.onFocusChanged(gainFocus, direction, previouslyFocusedRect);
@@ -110,6 +111,7 @@ public class ViewTodayItemAppointment extends ViewTodayItem
 		}
 	}
 	
+	@Override
 	protected void onDraw(Canvas canvas)
 	{
 		super.onDraw(canvas);		

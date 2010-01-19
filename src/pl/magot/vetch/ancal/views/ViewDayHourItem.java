@@ -23,9 +23,10 @@ public class ViewDayHourItem extends LinearLayout
 			super(context);
 	    setFocusable(false);
 	    LinearLayout.LayoutParams layParams = 
-	    	new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+	    	new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
 	    this.setLayoutParams(layParams);
 		}
+		@Override
 		protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
 		{
 	    setMeasuredDimension(measureWidth(widthMeasureSpec), measureHeight(heightMeasureSpec));				 
@@ -109,7 +110,7 @@ public class ViewDayHourItem extends LinearLayout
 		setWillNotDraw(false);
 		
 		setOrientation(LinearLayout.VERTICAL);
-		LayoutParams lparams = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+		LayoutParams lparams = new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
 		setLayoutParams(lparams);
 
 		//invisible view
@@ -197,7 +198,7 @@ public class ViewDayHourItem extends LinearLayout
 
   public void UpdateHeight()
   {
-  	this.getLayoutParams().height = LayoutParams.WRAP_CONTENT;
+  	this.getLayoutParams().height = android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
   	if (getChildCount() == 0)
   	{
   		if ((iHour >= 6) && (iHour <= 22))
@@ -214,12 +215,14 @@ public class ViewDayHourItem extends LinearLayout
   	return getHeight() == 0;
   }
   
+	@Override
 	protected void onFocusChanged(boolean gainFocus, int direction, Rect previouslyFocusedRect)
 	{
 		super.onFocusChanged(gainFocus, direction, previouslyFocusedRect);
 		invalidate();
 	}
 	
+	@Override
 	protected void onDraw(Canvas canvas)
 	{
 		super.onDraw(canvas);
@@ -463,7 +466,8 @@ public class ViewDayHourItem extends LinearLayout
 		return false;
 	}
 	
-  public boolean onTouchEvent(MotionEvent event)
+  @Override
+	public boolean onTouchEvent(MotionEvent event)
   {
   	boolean bHandled = false;
   	if (event.getAction() == MotionEvent.ACTION_DOWN)

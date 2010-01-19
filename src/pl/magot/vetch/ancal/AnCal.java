@@ -28,6 +28,7 @@ import android.content.*;
 public class AnCal extends CommonActivity
 {
 	//fields
+	
 	protected AnCal base = null;
 	private Calendar dateToday = Calendar.getInstance();
 	private SimpleDateFormat dateFormatFull = new SimpleDateFormat("EE, dd-MM-yyyy");
@@ -50,6 +51,7 @@ public class AnCal extends CommonActivity
 	
 	@SuppressWarnings("all")
 	protected RelativeLayout rlayAgenda = null;
+	
 	@SuppressWarnings("all")
 	protected RelativeLayout rlayAgendaView = null;	
 	protected LinearLayout llayAgendaData = null;		
@@ -82,10 +84,10 @@ public class AnCal extends CommonActivity
 	private ViewImgButton btnSelectViewItemNext = null;
 	
 	//bottom buttons
-	private CompoundButton btnSetViewToday = null;
-	private CompoundButton btnSetViewDay = null;
-	private CompoundButton btnSetViewWeek = null;
-	private CompoundButton btnSetViewMonth = null;
+	private Button btnSetViewToday = null;
+	private Button btnSetViewDay = null;
+	private Button btnSetViewWeek = null;
+	private Button btnSetViewMonth = null;
 
   //methods
   @Override
@@ -94,10 +96,9 @@ public class AnCal extends CommonActivity
   	super.onCreate(icicle);
 	  base = this;
 	  setContentView(R.layout.agenda);
-
+	  
 	  InitViews();
 		InitStateOnce();
-
 		StartReminderService();
   }
 
@@ -265,34 +266,34 @@ public class AnCal extends CommonActivity
   	labSelectViewItem = (TextView)findViewById(R.id.labSelectViewItem);
   	
   	//initialize change view bottom buttons
-  	btnSetViewToday = (CompoundButton)findViewById(R.id.btnSetViewToday);
+  	btnSetViewToday = (Button)findViewById(R.id.btnSetViewToday);
   	btnSetViewToday.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-     		ToggleBottomButtonsState(btnSetViewToday);      		
+     		//ToggleBottomButtonsState(btnSetViewToday);      		
      		SetAgendaView(AgendaView.viewMode.TODAY, LatestDateToday());
 			}		
   	});  	
 
-  	btnSetViewDay = (CompoundButton)findViewById(R.id.btnSetViewDay);
+  	btnSetViewDay = (Button)findViewById(R.id.btnSetViewDay);
   	btnSetViewDay.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-     		ToggleBottomButtonsState(btnSetViewDay);
+     		//ToggleBottomButtonsState(btnSetViewDay);
      		SetAgendaView(AgendaView.viewMode.DAY, LatestDateToday());
 			}		
   	});  	
 
-  	btnSetViewWeek = (CompoundButton)findViewById(R.id.btnSetViewWeek);
+  	btnSetViewWeek = (Button)findViewById(R.id.btnSetViewWeek);
   	btnSetViewWeek.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-     		ToggleBottomButtonsState(btnSetViewWeek);
+     		//ToggleBottomButtonsState(btnSetViewWeek);
      		SetAgendaView(AgendaView.viewMode.WEEK, LatestDateToday());
 			}		
   	});  	
 
-  	btnSetViewMonth = (CompoundButton)findViewById(R.id.btnSetViewMonth);
+  	btnSetViewMonth = (Button)findViewById(R.id.btnSetViewMonth);
   	btnSetViewMonth.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-     		ToggleBottomButtonsState(btnSetViewMonth);
+     		//ToggleBottomButtonsState(btnSetViewMonth);
      		SetAgendaView(AgendaView.viewMode.MONTH, LatestDateToday());
 			}		
   	});  	
@@ -322,6 +323,7 @@ public class AnCal extends CommonActivity
   
   public void UpdateBottomButtonsStateByCurrentView()
   {
+  	/*
     if (iCurrentAgendaViewType == AgendaView.viewMode.TODAY)
     	ToggleBottomButtonsState(btnSetViewToday);
     if (iCurrentAgendaViewType == AgendaView.viewMode.DAY)
@@ -329,7 +331,8 @@ public class AnCal extends CommonActivity
     if (iCurrentAgendaViewType == AgendaView.viewMode.WEEK)
    		ToggleBottomButtonsState(btnSetViewWeek);
     if (iCurrentAgendaViewType == AgendaView.viewMode.MONTH)
-    	ToggleBottomButtonsState(btnSetViewMonth);  	
+    	ToggleBottomButtonsState(btnSetViewMonth);
+    	*/  	
   }
 
   public void InitAgendaViewToday()
@@ -373,14 +376,14 @@ public class AnCal extends CommonActivity
 
   	//initialize scrollable content
   	scrollViewAgenda = new ScrollView(this);
-  	LayoutParams layParams = new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT); 
+  	LayoutParams layParams = new LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.FILL_PARENT); 
   	scrollViewAgenda.setLayoutParams(layParams);  	
   }
   
   private void InitStateOnce()
   {
 		ReloadAllDataTables();
-   	ToggleBottomButtonsState(btnSetViewToday);   		
+   	//ToggleBottomButtonsState(btnSetViewToday);   		
 		SetAgendaView(AgendaView.viewMode.TODAY, LatestDateToday());
 		
 		//refresh view (relayout bug)
@@ -667,7 +670,7 @@ public class AnCal extends CommonActivity
   	rlayAgendaTop.getLayoutParams().height = 0;
   	if (bEnable)
   	{
-  		rlayAgendaTop.getLayoutParams().height = LayoutParams.WRAP_CONTENT;
+  		rlayAgendaTop.getLayoutParams().height = android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
     	mlp.setMargins(0, 0, 0, 6);
   	}
   	
@@ -729,7 +732,8 @@ public class AnCal extends CommonActivity
   	OpenActivity(0, "android.intent.action.AnCal.ACTION_MODE_VIEW_ABOUT");
   }
   
-  protected void onActivityResult(int requestCode, int resultCode, Intent data)
+  @Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
   {
   	super.onActivityResult(requestCode, resultCode, data);
   	

@@ -80,6 +80,7 @@ public class ViewTodayItemHeader extends View
 		this.itemClick = itemClick;		
 	}
 		
+	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
 	{
     setMeasuredDimension(measureWidth(widthMeasureSpec), measureHeight(heightMeasureSpec));				 
@@ -129,6 +130,7 @@ public class ViewTodayItemHeader extends View
     return result;
   }
   
+	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event)
 	{
 		boolean bResult = super.onKeyDown(keyCode, event);	
@@ -139,6 +141,7 @@ public class ViewTodayItemHeader extends View
 		return bResult;
 	}
  
+	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event)
 	{
 		boolean bResult = super.onKeyUp(keyCode, event);
@@ -158,6 +161,7 @@ public class ViewTodayItemHeader extends View
 		canvas.drawRect(rt, mpt);		
 	}
 		
+	@Override
 	protected void onFocusChanged(boolean gainFocus, int direction, Rect previouslyFocusedRect)
 	{
 		super.onFocusChanged(gainFocus, direction, previouslyFocusedRect);
@@ -171,7 +175,7 @@ public class ViewTodayItemHeader extends View
 			LinearGradient lGradBkg = new LinearGradient(0, 0, 0, getHeight(),
 					0xFFDDDDDD, 0xFF444444, Shader.TileMode.CLAMP);						
 			mpt.setShader(lGradBkg);
-			RectF rt = new RectF(0F, 0F, (float)getWidth(), (float)getHeight());				
+			RectF rt = new RectF(0F, 0F, getWidth(), getHeight());				
 			canvas.drawRoundRect(rt, 2, 2, mpt);
     }
 	}
@@ -181,6 +185,7 @@ public class ViewTodayItemHeader extends View
 		return iIconLeft + (iconW + (iconW >> 1)) + iIconLeft;
 	}
 	
+	@Override
 	protected void onDraw(Canvas canvas)
 	{
 		super.onDraw(canvas);
@@ -276,7 +281,8 @@ public class ViewTodayItemHeader extends View
   	return (this.isFocused() || bTouchedDown);
   }
   
-  public boolean onTouchEvent(MotionEvent event)
+  @Override
+	public boolean onTouchEvent(MotionEvent event)
   {
   	boolean bHandled = false;
   	if (event.getAction() == MotionEvent.ACTION_DOWN)

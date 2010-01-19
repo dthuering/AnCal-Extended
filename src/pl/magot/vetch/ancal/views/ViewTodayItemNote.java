@@ -19,6 +19,7 @@ public class ViewTodayItemNote extends ViewTodayItem
 		SetText(sText);
 	}
 	
+	@Override
 	protected void onDraw(Canvas canvas)
 	{
 		super.onDraw(canvas);		

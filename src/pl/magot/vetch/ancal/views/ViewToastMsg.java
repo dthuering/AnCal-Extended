@@ -38,18 +38,18 @@ public class ViewToastMsg extends LinearLayout
 		pt.setTextSize(fTextSize);
 		final int iTextWidth = (int)pt.measureText(sContentText);		
 		//set max text contener width
-		int iMainWidth = LayoutParams.FILL_PARENT;
+		int iMainWidth = android.view.ViewGroup.LayoutParams.FILL_PARENT;
 		if ((iTextWidth + (iDefaultPadding + iDefaultPadding)) > getMaxWidth())						
 			iMainWidth = getMaxWidth();
 		//get icon
 		icon = getResources().getDrawable(R.drawable.iconnotifyalarm);		
 		//header
 		layHeader = new LinearLayout(context);		
-		layHeader.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+		layHeader.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
 		layHeader.setOrientation(LinearLayout.HORIZONTAL);
 		//header text
 		textHeader = new TextView(context);
-		textHeader.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+		textHeader.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
 		textHeader.setText(sHeaderText);
 		textHeader.setSingleLine();
 		textHeader.setTextSize(fTextSize);		
@@ -57,17 +57,17 @@ public class ViewToastMsg extends LinearLayout
 		layHeader.addView(textHeader);
 		//content
 		layContent = new LinearLayout(context);
-		layContent.setLayoutParams(new LayoutParams(iMainWidth, LayoutParams.WRAP_CONTENT));	
+		layContent.setLayoutParams(new LayoutParams(iMainWidth, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));	
 		layContent.setOrientation(LinearLayout.HORIZONTAL);
 		//content text
 		textContent = new TextView(context);
-		textContent.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+		textContent.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
 		textContent.setText(sContentText);		
 		textContent.setTextSize(fTextSize);
 		textContent.setTextColor(0xFFFFFFFF);
 		layContent.addView(textContent);
 		//update layout
-		this.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+		this.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
 		this.setOrientation(LinearLayout.VERTICAL);
 		this.setPadding(iDefaultPadding, iDefaultPadding, iDefaultPadding, iDefaultPadding);
 		this.setBackgroundColor(0x00000000); //sets drawable surface !!!		
@@ -99,7 +99,8 @@ public class ViewToastMsg extends LinearLayout
   	return iMaxWidth;
   }
   
-  protected void onDraw(Canvas canvas)
+  @Override
+	protected void onDraw(Canvas canvas)
   {
   	super.onDraw(canvas);
 
