@@ -113,7 +113,7 @@ public class KeyboardWidget extends Activity
   public LinearLayout createLayout(int iOrientation)
   {
 		LinearLayout lay = new LinearLayout(this);		
-		lay.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+		lay.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
 		lay.setOrientation(iOrientation);
 		return lay;
   }
@@ -136,12 +136,12 @@ public class KeyboardWidget extends Activity
   
   public void generateBottomButtons(LinearLayout layBottomControls)
   {
-  	TextView labMargin = createLabel("", 8, LayoutParams.FILL_PARENT);
+  	TextView labMargin = createLabel("", 8, android.view.ViewGroup.LayoutParams.FILL_PARENT);
   	
-  	btnCancel = createButton(sStrCancel, iSmallButtonWidth, LayoutParams.WRAP_CONTENT);  	
+  	btnCancel = createButton(sStrCancel, iSmallButtonWidth, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);  	
   	btnCancel.setBackgroundResource(android.R.drawable.btn_default_small);  	
   	
-  	btnSet = createButton(sStrSet, iSmallButtonWidth, LayoutParams.WRAP_CONTENT);  	
+  	btnSet = createButton(sStrSet, iSmallButtonWidth, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);  	
   	btnSet.setBackgroundResource(android.R.drawable.btn_default_small);
   	
   	//set events
@@ -177,7 +177,7 @@ public class KeyboardWidget extends Activity
   public HintEdit createEditBox()
   {
   	edit = new HintEdit(this);
-		edit.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+		edit.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
 		edit.setLines(3);
 		edit.setGravity(Gravity.TOP);
 		edit.setFocusable(true);

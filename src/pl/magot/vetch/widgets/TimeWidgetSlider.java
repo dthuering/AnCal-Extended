@@ -22,7 +22,9 @@ public class TimeWidgetSlider extends View
 	{
 		//fields
 		public int iValue = 0;
+		@SuppressWarnings("unused")
 		public int iLeftOffset = 0;
+		@SuppressWarnings("unused")
 		public int iWidth = 0;
 		public String strValue = null;
 		public int iStrWidth = 0;
@@ -68,6 +70,7 @@ public class TimeWidgetSlider extends View
 			pt.setTextSize(fTextSizeSmall);
 			iStrWidthSmall = (int)pt.measureText(strValue);						
 		}		
+		@SuppressWarnings("unused")
 		public boolean isPM()
 		{
 			if (iValue >= 12)
@@ -266,6 +269,7 @@ public class TimeWidgetSlider extends View
 		return iSliderBorder + iSliderSpace + iBoxBorder + getTextHeight() + iBoxBorder + iSliderSpace + iSliderBorder;
 	}
 
+	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event)
 	{
 		boolean bResult = super.onKeyDown(keyCode, event);
@@ -287,6 +291,7 @@ public class TimeWidgetSlider extends View
 		return bResult;
 	}
  
+	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event)
 	{
 		boolean bResult = super.onKeyUp(keyCode, event);
@@ -345,6 +350,7 @@ public class TimeWidgetSlider extends View
 		}		
 	}		
 	
+	@Override
 	protected void onDraw(Canvas canvas)
 	{
 		super.onDraw(canvas);
@@ -482,10 +488,10 @@ public class TimeWidgetSlider extends View
 		final int iNumberWidth = (bSelected)?value.iStrWidth:value.iStrWidthSmall;
 
 		int iTextPosX = (int)rect.right - iNumberWidth;
-		int iTextPosY = (int)rect.bottom + (int)(-pt.ascent()) - (int)getTextHeight();
+		int iTextPosY = (int)rect.bottom + (int)(-pt.ascent()) - getTextHeight();
 		
 		iTextPosX -= ((int)rect.width() >> 1) - (iNumberWidth >> 1);
-		iTextPosY -=  ((int)rect.height() >> 1) - ((int)getTextHeight() >> 1);
+		iTextPosY -=  ((int)rect.height() >> 1) - (getTextHeight() >> 1);
 		
 		iTextPosY += 1;			
 
@@ -556,6 +562,7 @@ public class TimeWidgetSlider extends View
 		canvas.drawLine(iX - iH2, rectButtonRight.bottom - iV, iX + iH, iY, pt);
 	}	
 	
+	@Override
 	protected void onFocusChanged(boolean gainFocus, int direction, Rect previouslyFocusedRect)
 	{
 		super.onFocusChanged(gainFocus, direction, previouslyFocusedRect);
@@ -643,7 +650,8 @@ public class TimeWidgetSlider extends View
 		}		
 	}	
 	
-  public boolean onTouchEvent(MotionEvent event)
+  @Override
+	public boolean onTouchEvent(MotionEvent event)
   {
   	boolean bHandled = false;
   	if (event.getAction() == MotionEvent.ACTION_DOWN)

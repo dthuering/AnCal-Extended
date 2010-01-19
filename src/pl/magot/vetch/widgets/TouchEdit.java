@@ -64,6 +64,7 @@ public class TouchEdit extends EditText
 	  });	  		
 	}	
 		
+	@Override
 	protected void onDraw(Canvas canvas)
 	{
 		super.onDraw(canvas);
@@ -118,6 +119,7 @@ public class TouchEdit extends EditText
 		}
 	}
 	
+	@Override
 	public boolean onTouchEvent(MotionEvent event)
 	{
 		super.onTouchEvent(event);

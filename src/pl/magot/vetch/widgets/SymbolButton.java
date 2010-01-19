@@ -31,6 +31,7 @@ public class SymbolButton extends Button
 		this.symbolType = symbolType;
 	}
 
+	@Override
 	public void onDraw(Canvas canvas)
 	{  			
 		super.onDraw(canvas);

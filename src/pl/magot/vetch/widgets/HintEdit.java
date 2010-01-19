@@ -112,6 +112,7 @@ public class HintEdit extends EditText
 		pthTriangleBkg.close();		
 	}
 	
+	@Override
 	protected void onDraw(Canvas canvas)
 	{
 		super.onDraw(canvas);

@@ -51,6 +51,7 @@ public class TimeCaption extends View
 		return (int)(-pt.ascent() + pt.descent());
 	}	
 	
+	@Override
 	protected void onDraw(Canvas canvas)
 	{
 		super.onDraw(canvas);
@@ -83,8 +84,8 @@ public class TimeCaption extends View
 		final int iTimeSignWidth = (int)pt.measureText(sTimeSign);
 		final int iTimeTotalWidth = iTimeWidth + (b24HourMode?0:(iSpace + iTimeSignWidth));
 
-		int iTextPosY = (int)rect.bottom + (int)(-pt.ascent()) - (int)getTextHeight();
-		iTextPosY -=  ((int)rect.height() >> 1) - ((int)getTextHeight() >> 1);
+		int iTextPosY = (int)rect.bottom + (int)(-pt.ascent()) - getTextHeight();
+		iTextPosY -=  ((int)rect.height() >> 1) - (getTextHeight() >> 1);
 
 		final int iTextPosX = (int)rect.left + (((int)rect.width() >> 1) - (iTimeTotalWidth >> 1));
 	

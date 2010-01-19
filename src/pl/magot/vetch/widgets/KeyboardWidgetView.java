@@ -201,6 +201,7 @@ public class KeyboardWidgetView extends View
  		canvas.drawText(keyLayout.getKeySymbol(key), iSymbolPosX, iSymbolPosY, pt);
 	}
 	
+	@Override
 	protected void onDraw(Canvas canvas)
 	{
 		super.onDraw(canvas);
@@ -265,6 +266,7 @@ public class KeyboardWidgetView extends View
 			editText.hideSymbolHint();
 	}
 
+	@Override
 	public boolean onTouchEvent(MotionEvent event)
   {
   	boolean bHandled = false;

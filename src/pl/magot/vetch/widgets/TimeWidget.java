@@ -131,7 +131,7 @@ public class TimeWidget extends Activity
   public LinearLayout createLayout(int iOrientation)
   {
 		LinearLayout lay = new LinearLayout(this);		
-		lay.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+		lay.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
 		lay.setOrientation(iOrientation);
 		return lay;
   }
@@ -160,18 +160,17 @@ public class TimeWidget extends Activity
   
   public void generateBottomButtons(LinearLayout layBottomControls)
   {
-  	TextView labMargin = createLabel("", 8, LayoutParams.FILL_PARENT);
+  	TextView labMargin = createLabel("", 8, android.view.ViewGroup.LayoutParams.FILL_PARENT);
 
-  	btnNone = createButton(sStrNone, iSmallButtonWidth, LayoutParams.WRAP_CONTENT);  	
+  	btnNone = createButton(sStrNone, iSmallButtonWidth, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);  	
   	btnNone.setBackgroundResource(android.R.drawable.btn_default_small);
   	
-  	btnOK = createButton(sStrSet, iSmallButtonWidth, LayoutParams.WRAP_CONTENT);  	
+  	btnOK = createButton(sStrSet, iSmallButtonWidth, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);  	
   	btnOK.setBackgroundResource(android.R.drawable.btn_default_small);
   	
   	//set events
   	btnNone.setOnClickListener(new Button.OnClickListener()
   	{
-			@Override
 			public void onClick(View arg0) {
 				clearTime();
 				OnClose();
@@ -179,7 +178,6 @@ public class TimeWidget extends Activity
 
   	btnOK.setOnClickListener(new Button.OnClickListener()
   	{
-			@Override
 			public void onClick(View arg0) {
 				getDataFromSliders();
 				OnClose();
@@ -266,7 +264,6 @@ public class TimeWidget extends Activity
 	
 	private TimeWidgetSlider.OnTimeChange mOnTimeChangeEvent = new TimeWidgetSlider.OnTimeChange()
 	{
-		@Override
 		public void OnChange(TimeWidgetSlider slider)
 		{
 			updateLabelCaption();

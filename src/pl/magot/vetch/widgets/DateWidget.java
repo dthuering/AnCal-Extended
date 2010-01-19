@@ -60,6 +60,7 @@ public class DateWidget extends Activity
   @Override
   public void onCreate(Bundle icicle)
   {
+  	
   	super.onCreate(icicle);
   	
   	//init calendar to defaults
@@ -158,7 +159,7 @@ public class DateWidget extends Activity
   public LinearLayout createLayout(int iOrientation)
   {
 		LinearLayout lay = new LinearLayout(this);		
-		lay.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+		lay.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
 		lay.setOrientation(iOrientation);
 		return lay;
   }
@@ -185,34 +186,31 @@ public class DateWidget extends Activity
   	final int iSmallButtonWidth = 60;
   	
   	//create buttons
-  	btnToday = createButton("", iTotalWidth - iSmallButtonWidth - iSmallButtonWidth, LayoutParams.WRAP_CONTENT);
+  	btnToday = createButton("", iTotalWidth - iSmallButtonWidth - iSmallButtonWidth, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
   	btnToday.setPadding(iHorPadding, btnToday.getPaddingTop(), iHorPadding, btnToday.getPaddingBottom());  	
   	btnToday.setBackgroundResource(android.R.drawable.btn_default_small);  	
   	
   	SymbolButton btnPrev = new SymbolButton(this, SymbolButton.symbol.arrowLeft);
-  	btnPrev.setLayoutParams(new LayoutParams(iSmallButtonWidth, LayoutParams.WRAP_CONTENT));  	
+  	btnPrev.setLayoutParams(new LayoutParams(iSmallButtonWidth, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));  	
   	btnPrev.setBackgroundResource(android.R.drawable.btn_default_small);
 
   	SymbolButton btnNext = new SymbolButton(this, SymbolButton.symbol.arrowRight);
-  	btnNext.setLayoutParams(new LayoutParams(iSmallButtonWidth, LayoutParams.WRAP_CONTENT));  	
+  	btnNext.setLayoutParams(new LayoutParams(iSmallButtonWidth, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));  	
   	btnNext.setBackgroundResource(android.R.drawable.btn_default_small);  	
   	
   	//set events
   	btnPrev.setOnClickListener(new Button.OnClickListener()
   	{
-			@Override
 			public void onClick(View arg0) {
 				setPrevViewItem();
 		}});
   	btnToday.setOnClickListener(new Button.OnClickListener()
   	{
-			@Override
 			public void onClick(View arg0) {
 				setTodayViewItem();
 		}});
   	btnNext.setOnClickListener(new Button.OnClickListener()
   	{
-			@Override
 			public void onClick(View arg0) {
 				setNextViewItem();
 		}});
@@ -225,13 +223,12 @@ public class DateWidget extends Activity
 
   public void generateBottomButtons(LinearLayout layBottomControls)
   {
-  	btnNone = createButton(sStrNone, iSmallButtonWidth, LayoutParams.WRAP_CONTENT);  	
+  	btnNone = createButton(sStrNone, iSmallButtonWidth, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);  	
   	btnNone.setBackgroundResource(android.R.drawable.btn_default_small);
   	
   	//set events
   	btnNone.setOnClickListener(new Button.OnClickListener()
   	{
-			@Override
 			public void onClick(View arg0) {
 				deselectAll();
 				updateControlsState();
@@ -462,7 +459,6 @@ public class DateWidget extends Activity
 
 	public DateWidgetDayCell.OnItemClick mOnDayCellClick = new DateWidgetDayCell.OnItemClick()
 	{
-		@Override
 		public void OnClick(DateWidgetDayCell item)
 		{
 			deselectAll();

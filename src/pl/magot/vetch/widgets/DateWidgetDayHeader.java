@@ -50,7 +50,7 @@ public class DateWidgetDayHeader extends View
 			pt.setFakeBoldText(true);
 			pt.setColor(dayStyle.getColorTextHeader(bHoliday));
 			
-			final int iTextPosY = (int)getTextHeight();
+			final int iTextPosY = getTextHeight();
 			final String sDayName = dayStyle.getWeekDayName(iWeekDay);
 			
 			//draw day name
@@ -64,6 +64,7 @@ public class DateWidgetDayHeader extends View
 		return (int)(-pt.ascent() + pt.descent());
 	}
 	
+	@Override
 	protected void onDraw(Canvas canvas)
 	{
 		super.onDraw(canvas);

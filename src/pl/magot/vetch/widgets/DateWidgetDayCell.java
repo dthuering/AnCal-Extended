@@ -55,6 +55,7 @@ public class DateWidgetDayCell extends View
 		return this.bSelected;
 	}
 	
+	@Override
 	public void setSelected(boolean bEnable)
 	{
 		if (this.bSelected != bEnable)
@@ -86,6 +87,7 @@ public class DateWidgetDayCell extends View
 		return (int)(-pt.ascent() + pt.descent());
 	}
 	
+	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event)
 	{
 		boolean bResult = super.onKeyDown(keyCode, event);
@@ -96,6 +98,7 @@ public class DateWidgetDayCell extends View
 		return bResult;
 	}
  
+	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event)
 	{
 		boolean bResult = super.onKeyUp(keyCode, event);
@@ -108,6 +111,7 @@ public class DateWidgetDayCell extends View
 				itemClick.OnClick(this);
 	}
 	
+	@Override
 	protected void onFocusChanged(boolean gainFocus, int direction, Rect previouslyFocusedRect)
 	{
 		super.onFocusChanged(gainFocus, direction, previouslyFocusedRect);
@@ -124,6 +128,7 @@ public class DateWidgetDayCell extends View
 		return calDate;
 	}
 	
+	@Override
 	protected void onDraw(Canvas canvas)
 	{
 		super.onDraw(canvas);
@@ -188,10 +193,10 @@ public class DateWidgetDayCell extends View
 			pt.setUnderlineText(true);
 
 		int iTextPosX = (int)rect.right - (int)pt.measureText(sDate);
-		int iTextPosY = (int)rect.bottom + (int)(-pt.ascent()) - (int)getTextHeight();
+		int iTextPosY = (int)rect.bottom + (int)(-pt.ascent()) - getTextHeight();
 		
 		iTextPosX -= ((int)rect.width() >> 1) - ((int)pt.measureText(sDate) >> 1);
-		iTextPosY -=  ((int)rect.height() >> 1) - ((int)getTextHeight() >> 1);
+		iTextPosY -=  ((int)rect.height() >> 1) - (getTextHeight() >> 1);
 
 		//draw text
 	  if (bSelected || bFocused)
@@ -217,7 +222,8 @@ public class DateWidgetDayCell extends View
   	return (this.isFocused() || bTouchedDown);
   }
 	
-  public boolean onTouchEvent(MotionEvent event)
+  @Override
+	public boolean onTouchEvent(MotionEvent event)
   {
   	boolean bHandled = false;
   	if (event.getAction() == MotionEvent.ACTION_DOWN)
