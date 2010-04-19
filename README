@@ -1,0 +1,11 @@
+AnCal Extended - a fork of AnCal, the personal-information-manager for Android.
+AnCal was originally written by Piotr Zagawa (http://vetch.magot.pl/pages/ancal.html),
+its project-page can be found at http://code.google.com/p/ancal/.
+
+This is my private fork of AnCal, planned extensions are:
+ 
+ - enhanced localisation
+ - import of birthdays from contacts
+ - minor UI-enhancments like context menus for quicker navigation
+ 
+ This repository is NOT related to the original AnCal project or its author! 
