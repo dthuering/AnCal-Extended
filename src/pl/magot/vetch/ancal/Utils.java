@@ -2,6 +2,7 @@
 package pl.magot.vetch.ancal;
 
 
+import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import android.content.*;
@@ -25,7 +26,7 @@ public class Utils
 	public static int MSGTYPE_WARNING = 2;
 	public static int MSGTYPE_ERROR = 3;
 	
-	private SimpleDateFormat dateFormatWeekDay = new SimpleDateFormat("EEEE");
+	private final DateFormatSymbols dateFormatSymbols = new DateFormatSymbols();
 	private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM");
 	private SimpleDateFormat dateFormatLong = new SimpleDateFormat("EEEE, d MMMM yyyy");
 	private SimpleDateFormat dateFormatShort = new SimpleDateFormat("dd-MM-yyyy");
@@ -37,9 +38,20 @@ public class Utils
 		ctx = context;
 	}
 	
-	public String GetWeekDay(Calendar date)
-	{
-		return dateFormatWeekDay.format(date.getTime());
+	public String GetWeekDay(Calendar date) {
+		return getWeekDay(date.get(Calendar.DAY_OF_WEEK));
+	}
+	
+	public String getWeekDay(int dayOfWeek) {
+		return dateFormatSymbols.getWeekdays()[dayOfWeek];
+	}
+	
+	public final String GetShortWeekDay(Calendar date) {
+		return getShortWeekDay(date.get(Calendar.DAY_OF_WEEK));
+	}
+	
+	public String getShortWeekDay(int dayOfWeek) {
+		return dateFormatSymbols.getShortWeekdays()[dayOfWeek];
 	}
 
 	public String GetMonth(Calendar date)

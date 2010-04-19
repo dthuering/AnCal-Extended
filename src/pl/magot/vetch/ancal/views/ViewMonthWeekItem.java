@@ -2,6 +2,7 @@
 package pl.magot.vetch.ancal.views;
 
 
+import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import pl.magot.vetch.ancal.Utils;
 import android.content.Context;
@@ -228,7 +229,7 @@ public class ViewMonthWeekItem extends View
 			mpt.setColor(dayStyle.getColorTextHeader(bHoliday, bToday));					
 
 			final int iTextPosY = (int)getTextHeight();			
-			final String sDayName = dayStyle.getWeekDayName(vecWeekDaysId[iDay]);
+			final String sDayName = new Utils(getContext()).getShortWeekDay(vecWeekDaysId[iDay]);
 			
 			//draw day name
 			final int iDayNamePosX = (int)rectDayHeaderFrame.left + ((int)rectDayHeaderFrame.width() >> 1) - ((int)mpt.measureText(sDayName) >> 1);			

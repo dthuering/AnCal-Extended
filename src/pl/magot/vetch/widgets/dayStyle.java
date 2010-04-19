@@ -7,28 +7,6 @@ import java.util.*;
 
 public class dayStyle
 {
-	//methods
-	private static String[] getWeekDayNames()
-	{
-		String[] vec = new String[10];
-		vec[Calendar.SUNDAY] = "Sun";
-		vec[Calendar.MONDAY] = "Mon";
-		vec[Calendar.TUESDAY] = "Tue";
-		vec[Calendar.WEDNESDAY] = "Wed";
-		vec[Calendar.THURSDAY] = "Thu";
-		vec[Calendar.FRIDAY] = "Fri";
-		vec[Calendar.SATURDAY] = "Sat";		
-		return vec;		
-	}
-	
-	public static String getWeekDayName(int iDay)
-	{
-		return vecStrWeekDayNames[iDay];
-	}
-	
-	//fields
-	private final static String[] vecStrWeekDayNames = getWeekDayNames();
-
 	//fields
 	public final static int iColorFrameHeader = 0xff666666;
 	public final static int iColorFrameHeaderHoliday = 0xff707070;
