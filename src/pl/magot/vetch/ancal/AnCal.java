@@ -7,12 +7,15 @@ package pl.magot.vetch.ancal;
 
 import java.util.*;
 import java.text.*;
+
+import de.theprojects.ancal.MessageType;
 import pl.magot.vetch.ancal.agenda.*;
 import pl.magot.vetch.ancal.database.*;
 import pl.magot.vetch.ancal.dataview.*;
 import pl.magot.vetch.ancal.views.*;
 import pl.magot.vetch.ancal.reminder.AlarmService;
 import pl.magot.vetch.widgets.*;
+import android.text.format.DateUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
@@ -96,7 +99,7 @@ public class AnCal extends CommonActivity
   	super.onCreate(icicle);
 	  base = this;
 	  setContentView(R.layout.agenda);
-	  
+	 
 	  InitViews();
 		InitStateOnce();
 		StartReminderService();
@@ -506,7 +509,7 @@ public class AnCal extends CommonActivity
   public void UpdateCurrentViewItemDate()
   {
 		String s = "";
-    if (iCurrentAgendaViewType == AgendaView.viewMode.DAY)  	
+    if (iCurrentAgendaViewType == AgendaView.viewMode.DAY)
   		s = dateFormatFull.format(CurrentAgendaView.GetViewStartDate().getTime()).toString();
     if (iCurrentAgendaViewType == AgendaView.viewMode.WEEK)
   		s = dateFormatFull.format(CurrentAgendaView.GetViewStartDate().getTime()).toString();
@@ -613,7 +616,7 @@ public class AnCal extends CommonActivity
 	  	VisibleLayoutContentAdd();
 	    
   	} else {
-			utils.ShowMsgResStr(Database.GetErrDesc(userdb.TablesCreationResult()), Utils.MSGTYPE_ERROR);  		
+			utils.ShowMsgResStr(Database.GetErrDesc(userdb.TablesCreationResult()), MessageType.ERROR);  		
   	}
   }
   

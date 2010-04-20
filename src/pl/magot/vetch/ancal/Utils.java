@@ -3,11 +3,13 @@ package pl.magot.vetch.ancal;
 
 
 import java.text.DateFormatSymbols;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import de.theprojects.ancal.MessageType;
 import android.content.*;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.text.format.DateUtils;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.TranslateAnimation;
@@ -21,52 +23,21 @@ public class Utils
 	public static int ANIM_ALPHA_DURATION = 100;
 	public static int ANIM_TRANSLATE_DURATION = 30;	
 	
-	public static int MSGTYPE_DEFAULT = 0;
-	public static int MSGTYPE_INFO = 1;
-	public static int MSGTYPE_WARNING = 2;
-	public static int MSGTYPE_ERROR = 3;
-	
-	private final DateFormatSymbols dateFormatSymbols = new DateFormatSymbols();
-	private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM");
-	private SimpleDateFormat dateFormatLong = new SimpleDateFormat("EEEE, d MMMM yyyy");
-	private SimpleDateFormat dateFormatShort = new SimpleDateFormat("dd-MM-yyyy");
-	private SimpleDateFormat dateFormatSql = new SimpleDateFormat("dd-MM-yyyy kk:mm.ss");
-
 	//UTILS
-	public Utils(Context context)
-	{
+	public Utils(Context context) {
 		ctx = context;
 	}
 	
-	public String GetWeekDay(Calendar date) {
-		return getWeekDay(date.get(Calendar.DAY_OF_WEEK));
-	}
-	
-	public String getWeekDay(int dayOfWeek) {
-		return dateFormatSymbols.getWeekdays()[dayOfWeek];
-	}
-	
-	public final String GetShortWeekDay(Calendar date) {
+	public final String getShortWeekDay(Calendar date) {
 		return getShortWeekDay(date.get(Calendar.DAY_OF_WEEK));
 	}
 	
 	public String getShortWeekDay(int dayOfWeek) {
-		return dateFormatSymbols.getShortWeekdays()[dayOfWeek];
+		return DateUtils.getDayOfWeekString(dayOfWeek, DateUtils.LENGTH_SHORT);
 	}
 
-	public String GetMonth(Calendar date)
-	{
-		return dateFormatMonth.format(date.getTime());
-	}
-	
-	public String GetLongDate(Calendar date)
-	{
-		return dateFormatLong.format(date.getTime());
-	}
-	
-	public String GetShortDate(Calendar date)
-	{
-		return dateFormatShort.format(date.getTime());
+	public String GetLongDate(Calendar date) {
+		return DateUtils.formatDateTime(ctx, date.getTimeInMillis(), DateUtils.FORMAT_SHOW_WEEKDAY | DateUtils.LENGTH_MEDIUM);
 	}
 	
 	//WARNING: String.format is VERY SLOW, not for paint draw !
@@ -109,54 +80,15 @@ public class Utils
 		alert(ii.toString());
 	}
 	
-	public void ShowMsgResStr(int i, int iMsgType)
+	public void ShowMsgResStr(int i, MessageType msgType)
 	{
-		String sTitle = GetResStr(R.string.app_name);
-		int iconId = 0;
-		if (iMsgType == MSGTYPE_INFO)
-		{
-			sTitle = GetResStr(R.string.msgTypeInfo);
-			iconId = R.drawable.msgicon_info;
-		}
-		if (iMsgType == MSGTYPE_WARNING)
-		{
-			sTitle = GetResStr(R.string.msgTypeWarning);
-			iconId = R.drawable.msgicon_warning;
-		}
-		if (iMsgType == MSGTYPE_ERROR)
-		{
-			sTitle = GetResStr(R.string.msgTypeError);
-			iconId = R.drawable.msgicon_error;
-		}					
 		AlertDialog.Builder dlg = new AlertDialog.Builder(ctx);		
 		dlg.setMessage(GetResStr(i));
 		dlg.setPositiveButton(GetResStr(R.string.msgBoxButtonOk), null);		
-		dlg.setTitle(sTitle);		
-		dlg.setIcon(iconId);		
+		dlg.setTitle(msgType.getTitle());		
+		dlg.setIcon(msgType.getIcon());		
 		dlg.create();
 		dlg.show();
-	}
-	
-	//sql format: "dd-MM-yyyy kk:mm.ss"
-	public static Calendar SqlStrToDate(String s, Calendar dateOut, Calendar dateFail)
-	{
-		if (s.length() == 19)
-		{
-			int dd = Integer.parseInt(s.substring(0, 2));
-			int MM = Integer.parseInt(s.substring(3, 5));
-			int yyyy = Integer.parseInt(s.substring(6, 10));
-			int kk = Integer.parseInt(s.substring(11, 13));
-			int mm = Integer.parseInt(s.substring(14, 16));
-			int ss = Integer.parseInt(s.substring(17, 19));
-			dateOut.set(yyyy, MM - 1, dd, kk, mm, ss);
-			return dateOut;
-		}
-		return dateFail;		
-	}
-	
-	public String DateToSqlStr(Calendar date)
-	{
-		return dateFormatSql.format(date.getTime());
 	}
 	
 	public static int GetTimeAsSeconds(Calendar date)
@@ -165,14 +97,6 @@ public class Utils
 			date.get(Calendar.MINUTE) * 60;
 	}
 
-	public static void ClearCalendarTime(Calendar cal)
-	{
-		cal.clear(Calendar.MILLISECOND);
-		cal.clear(Calendar.SECOND);
-		cal.clear(Calendar.MINUTE);
-		cal.clear(Calendar.HOUR_OF_DAY);
-	}
-	
 	public static boolean YearDaysEqual(Calendar calDate, Calendar calDateTo)
 	{
 		if (calDate.get(Calendar.YEAR) == calDateTo.get(Calendar.YEAR))
@@ -191,35 +115,6 @@ public class Utils
 		return false;
 	}
 	
-	//compare time: for reminder to show
-	public static boolean IsTimeOverdued(Calendar calDate, Calendar calDueDate)
-	{
-		if ((calDueDate.compareTo(calDate) == 0) || (calDueDate.compareTo(calDate) == 1))
-			return true;
-		return false;
-	}
-	
-	//compare time: for calendar view display
-	public static boolean IsInTimeRange(Calendar calDateStart, Calendar calDate, int iDurationInMinutes)
-	{
-		if (calDate.get(Calendar.HOUR_OF_DAY) == calDateStart.get(Calendar.HOUR_OF_DAY))
-			if (calDate.get(Calendar.MINUTE) >= calDateStart.get(Calendar.MINUTE))
-				if (calDate.get(Calendar.MINUTE) <= (calDateStart.get(Calendar.MINUTE) + iDurationInMinutes))
-					return true;
-		return false;
-	}	
-	
-	//example key: 200712122359
-	public static long GetDateTimeKey(Calendar calDate)
-	{
-		long lYear = calDate.get(Calendar.YEAR) * 100000000;
-		long lMonth = calDate.get(Calendar.MONTH) * 1000000;
-		long lDay = calDate.get(Calendar.DAY_OF_MONTH) * 10000;
-		long lHour = calDate.get(Calendar.HOUR_OF_DAY) * 100;
-		long lMinute = calDate.get(Calendar.MINUTE);
-		return lYear + lMonth + lDay + lHour + lMinute;
-	}
-
 	public static String CapitalizeFirstLetter(String sText)
 	{
 		return sText.substring(0,1).toUpperCase() + sText.substring(1, sText.length()).toLowerCase();

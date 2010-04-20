@@ -1,6 +1,8 @@
 package pl.magot.vetch.ancal;
 
 import java.util.Calendar;
+
+import de.theprojects.ancal.MessageType;
 import pl.magot.vetch.ancal.database.DataTable;
 import pl.magot.vetch.ancal.database.Database;
 import pl.magot.vetch.ancal.reminder.*;
@@ -139,9 +141,9 @@ public abstract class CommonActivity extends Activity
 			if (an == Action.ShowMsg)
 			{
 				int iMsgId = extras.getInt("msgResStrId");
-				int iMsgType = extras.getInt("msgType");
+				MessageType msgType = MessageType.create(extras.getInt("msgType"));
 				// show result message
-				utils.ShowMsgResStr(iMsgId, iMsgType);
+				utils.ShowMsgResStr(iMsgId, msgType);
 			}
 		}
 	}
@@ -150,7 +152,7 @@ public abstract class CommonActivity extends Activity
 	{
 		Bundle extras = new Bundle();
 		extras.putInt("msgResStrId", iMsgId);
-		extras.putInt("msgType", Utils.MSGTYPE_ERROR);
+		extras.putInt("msgType", MessageType.ERROR.getId());
 		extras.putString("action", Action.ShowMsg.toString());
 		return extras;
 	}
@@ -239,12 +241,12 @@ public abstract class CommonActivity extends Activity
 				bSuccess = true;
 			} else
 			{
-				utils.ShowMsgResStr(Database.GetErrDesc(result), Utils.MSGTYPE_ERROR);
+				utils.ShowMsgResStr(Database.GetErrDesc(result), MessageType.ERROR);
 			}
 		} else
 		{
 			utils
-					.ShowMsgResStr(R.string.infoEnterAllRequiredData, Utils.MSGTYPE_INFO);
+					.ShowMsgResStr(R.string.infoEnterAllRequiredData, MessageType.INFO);
 		}
 		return bSuccess;
 	}
@@ -259,7 +261,7 @@ public abstract class CommonActivity extends Activity
 					return false;
 		if (calDate.before(calNow))
 		{
-			utils.ShowMsgResStr(R.string.infoEnterValidDate, Utils.MSGTYPE_INFO);
+			utils.ShowMsgResStr(R.string.infoEnterValidDate, MessageType.INFO);
 			return true;
 		}
 		return false;
@@ -296,7 +298,7 @@ public abstract class CommonActivity extends Activity
 			bSuccess = true;
 		} else
 		{
-			utils.ShowMsgResStr(Database.GetErrDesc(result), Utils.MSGTYPE_ERROR);
+			utils.ShowMsgResStr(Database.GetErrDesc(result), MessageType.ERROR);
 		}
 		return bSuccess;
 	}

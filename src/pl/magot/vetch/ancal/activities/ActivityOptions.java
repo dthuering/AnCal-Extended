@@ -3,9 +3,10 @@ package pl.magot.vetch.ancal.activities;
 
 
 import java.util.*;
+
+import de.theprojects.ancal.MessageType;
 import pl.magot.vetch.ancal.CommonActivity;
 import pl.magot.vetch.ancal.R;
-import pl.magot.vetch.ancal.Utils;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.ArrayAdapter;
@@ -141,7 +142,7 @@ public class ActivityOptions extends CommonActivity
   	{
 			CloseActivity(CommonActivity.bundleOptionsUpdated, "");
   	} else {
-			utils.ShowMsgResStr(R.string.errCantSaveOptions, Utils.MSGTYPE_ERROR);  		
+			utils.ShowMsgResStr(R.string.errCantSaveOptions, MessageType.ERROR);  		
   	}
   }
 

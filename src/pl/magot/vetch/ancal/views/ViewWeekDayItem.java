@@ -154,7 +154,7 @@ public class ViewWeekDayItem extends View
 	{
 		this.calDate.setTimeInMillis(dateDay.getTimeInMillis());
 		this.sStrDayNr = Integer.toString(calDate.get(Calendar.DAY_OF_MONTH));
-		this.sStrDayName = new Utils(getContext()).GetShortWeekDay(calDate);				
+		this.sStrDayName = new Utils(getContext()).getShortWeekDay(calDate);				
 		this.bToday = IsToday(dateToday);
 		this.bHoliday = IsHoliday();
 	}

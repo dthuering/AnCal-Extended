@@ -126,7 +126,7 @@ public class AlarmDataViewItem
 		String s = "";
 		
 		String sText = new String(sSubject);			
-		sText = sText.replace("\n", " ");			
+		sText = sText.replace("\n", " ");
 		sText = Utils.CapitalizeFirstLetter(sText);
 		
 		//appt info
