@@ -4,8 +4,8 @@ package pl.magot.vetch.ancal.activities;
 
 import java.util.*;
 
-import de.theprojects.ancal.MessageType;
 import pl.magot.vetch.ancal.CommonActivity;
+import pl.magot.vetch.ancal.MessageType;
 import pl.magot.vetch.ancal.R;
 import android.os.Bundle;
 import android.view.*;

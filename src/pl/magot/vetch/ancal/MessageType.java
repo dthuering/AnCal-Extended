@@ -1,4 +1,4 @@
-package de.theprojects.ancal;
+package pl.magot.vetch.ancal;
 
 import java.util.NoSuchElementException;
 

@@ -105,20 +105,20 @@ public abstract class DataView
 		
 	public int getDaysRangeForView(final int agendaViewType)
 	{	
-		if (agendaViewType == AgendaView.viewMode.TODAY)
+		if (agendaViewType == AgendaView.ViewMode.TODAY)
 			return 0;
 
-		if (agendaViewType == AgendaView.viewMode.DAY)
+		if (agendaViewType == AgendaView.ViewMode.DAY)
 			return 0;
 
-		if (agendaViewType == AgendaView.viewMode.WEEK)
+		if (agendaViewType == AgendaView.ViewMode.WEEK)
 			return 7;
 
-		if (agendaViewType == AgendaView.viewMode.MONTH)
+		if (agendaViewType == AgendaView.ViewMode.MONTH)
 			return 42;
 	
 		//counting days backward !!!
-		if (agendaViewType == AgendaView.viewMode.TODAY_ALARM)
+		if (agendaViewType == AgendaView.ViewMode.TODAY_ALARM)
 			return 7;
 		
 		return 0;
@@ -134,7 +134,7 @@ public abstract class DataView
 		for (int i = 0; i < rows.size(); i++)
 		{
 			DataViewItem item = rows.get(i);
-			item.viewMode = AgendaView.viewMode.NONE;
+			item.viewMode = AgendaView.ViewMode.NONE;
 			FilterDataForView(item, calViewStartDate, agendaViewType);
 		}
 	}

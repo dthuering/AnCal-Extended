@@ -4,6 +4,7 @@ package pl.magot.vetch.ancal.activities;
 
 import java.util.*;
 import pl.magot.vetch.widgets.*;
+import pl.magot.vetch.ancal.AnCalDateUtils;
 import pl.magot.vetch.ancal.CommonActivity;
 import pl.magot.vetch.ancal.R;
 import pl.magot.vetch.ancal.database.DataRowTask;
@@ -208,7 +209,7 @@ public class ActivityTask extends CommonActivity
   {
   	if (dateDue.getTimeInMillis() != 0)
 		{
-	  	btnDueDate.setText(utils.GetLongDate(dateDue));
+	  	btnDueDate.setText(AnCalDateUtils.formatMediumDate(this, dateDue));
 		} else {
 			btnDueDate.setText(utils.GetResStr(R.string.labNoDate));
 		}	

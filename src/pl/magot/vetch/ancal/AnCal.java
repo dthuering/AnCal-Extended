@@ -8,7 +8,6 @@ package pl.magot.vetch.ancal;
 import java.util.*;
 import java.text.*;
 
-import de.theprojects.ancal.MessageType;
 import pl.magot.vetch.ancal.agenda.*;
 import pl.magot.vetch.ancal.database.*;
 import pl.magot.vetch.ancal.dataview.*;
@@ -38,7 +37,7 @@ public class AnCal extends CommonActivity
 	private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM yyyy");
 	
 	//fields
-  private int iCurrentAgendaViewType = AgendaView.viewMode.TODAY; 
+  private int iCurrentAgendaViewType = AgendaView.ViewMode.TODAY; 
   
   //menu items
   private final int miNewAppt = Menu.FIRST;
@@ -273,7 +272,7 @@ public class AnCal extends CommonActivity
   	btnSetViewToday.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
      		//ToggleBottomButtonsState(btnSetViewToday);      		
-     		SetAgendaView(AgendaView.viewMode.TODAY, LatestDateToday());
+     		SetAgendaView(AgendaView.ViewMode.TODAY, LatestDateToday());
 			}		
   	});  	
 
@@ -281,7 +280,7 @@ public class AnCal extends CommonActivity
   	btnSetViewDay.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
      		//ToggleBottomButtonsState(btnSetViewDay);
-     		SetAgendaView(AgendaView.viewMode.DAY, LatestDateToday());
+     		SetAgendaView(AgendaView.ViewMode.DAY, LatestDateToday());
 			}		
   	});  	
 
@@ -289,7 +288,7 @@ public class AnCal extends CommonActivity
   	btnSetViewWeek.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
      		//ToggleBottomButtonsState(btnSetViewWeek);
-     		SetAgendaView(AgendaView.viewMode.WEEK, LatestDateToday());
+     		SetAgendaView(AgendaView.ViewMode.WEEK, LatestDateToday());
 			}		
   	});  	
 
@@ -297,7 +296,7 @@ public class AnCal extends CommonActivity
   	btnSetViewMonth.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
      		//ToggleBottomButtonsState(btnSetViewMonth);
-     		SetAgendaView(AgendaView.viewMode.MONTH, LatestDateToday());
+     		SetAgendaView(AgendaView.ViewMode.MONTH, LatestDateToday());
 			}		
   	});  	
   	
@@ -387,7 +386,7 @@ public class AnCal extends CommonActivity
   {
 		ReloadAllDataTables();
    	//ToggleBottomButtonsState(btnSetViewToday);   		
-		SetAgendaView(AgendaView.viewMode.TODAY, LatestDateToday());
+		SetAgendaView(AgendaView.ViewMode.TODAY, LatestDateToday());
 		
 		//refresh view (relayout bug)
 		ForceUpdateLayout();
@@ -431,7 +430,7 @@ public class AnCal extends CommonActivity
     			iUpdateDate_minute = dateToday.get(Calendar.MINUTE);
     			
     	    //autorefresh only today view
-    	    if (iCurrentAgendaViewType == AgendaView.viewMode.TODAY)
+    	    if (iCurrentAgendaViewType == AgendaView.ViewMode.TODAY)
     	    {
     	      if (CurrentAgendaView != null)
     	      	CurrentAgendaView.SetViewStartDate(LatestDateToday());
@@ -454,7 +453,7 @@ public class AnCal extends CommonActivity
   public synchronized void RefreshData()
   {
   	//set title
-  	SetActivityTitle(utils.GetLongDate(dateToday));
+  	SetActivityTitle(AnCalDateUtils.formatLongDate(this, dateToday));
   	
   	//set week nr label
     SetWeekNrText(CurrentAgendaView.GetViewStartDate());
@@ -473,14 +472,14 @@ public class AnCal extends CommonActivity
   	{
 	    //filter data
 	    dataViewAppt.FilterData(CurrentAgendaView.GetViewStartDate(), CurrentAgendaView.GetViewType());
-	    if (iCurrentAgendaViewType == AgendaView.viewMode.TODAY)
+	    if (iCurrentAgendaViewType == AgendaView.ViewMode.TODAY)
 	    {
 	    	dataViewTask.FilterData(CurrentAgendaView.GetViewStartDate(), CurrentAgendaView.GetViewType());
 	    	dataViewNote.FilterData(CurrentAgendaView.GetViewStartDate(), CurrentAgendaView.GetViewType());
 	    }
 	    //rebuild views
 			CurrentAgendaView.RebuildViewAppointments(dataViewAppt);
-	    if (iCurrentAgendaViewType == AgendaView.viewMode.TODAY)
+	    if (iCurrentAgendaViewType == AgendaView.ViewMode.TODAY)
 	    {
 	    	CurrentAgendaView.RebuildViewTasks(dataViewTask);
 	    	CurrentAgendaView.RebuildViewNotes(dataViewNote);
@@ -509,12 +508,12 @@ public class AnCal extends CommonActivity
   public void UpdateCurrentViewItemDate()
   {
 		String s = "";
-    if (iCurrentAgendaViewType == AgendaView.viewMode.DAY)
-  		s = dateFormatFull.format(CurrentAgendaView.GetViewStartDate().getTime()).toString();
-    if (iCurrentAgendaViewType == AgendaView.viewMode.WEEK)
-  		s = dateFormatFull.format(CurrentAgendaView.GetViewStartDate().getTime()).toString();
-    if (iCurrentAgendaViewType == AgendaView.viewMode.MONTH)
-  		s = dateFormatMonth.format(CurrentAgendaView.GetCurrentSelectedMonthAsCalendar().getTime()).toString();
+    if (iCurrentAgendaViewType == AgendaView.ViewMode.DAY)
+  		s = AnCalDateUtils.formatMediumDate(this, CurrentAgendaView.GetViewStartDate());
+    if (iCurrentAgendaViewType == AgendaView.ViewMode.WEEK)
+  		s = AnCalDateUtils.formatMediumDate(this, CurrentAgendaView.GetViewStartDate());
+    if (iCurrentAgendaViewType == AgendaView.ViewMode.MONTH)
+  		s = AnCalDateUtils.formatMediumDate(this, CurrentAgendaView.GetCurrentSelectedMonthAsCalendar());
 		btnSelectViewItemToday.setText(s);
   }
   
@@ -539,7 +538,7 @@ public class AnCal extends CommonActivity
 
   public void UpdateWeekNrInfoVisibility()
   {
-    if (iCurrentAgendaViewType == AgendaView.viewMode.MONTH)
+    if (iCurrentAgendaViewType == AgendaView.ViewMode.MONTH)
     {
     	labWeekStr.setVisibility(View.INVISIBLE);
     	labWeekNr.setVisibility(View.INVISIBLE);
@@ -575,11 +574,11 @@ public class AnCal extends CommonActivity
   private void UpdateSelectViewText(int viewType)
   {
   	String s = "";
-    if (iCurrentAgendaViewType == AgendaView.viewMode.DAY)
+    if (iCurrentAgendaViewType == AgendaView.ViewMode.DAY)
     	s = utils.GetResStr(R.string.labSelectViewDay);
-    if (iCurrentAgendaViewType == AgendaView.viewMode.WEEK)
+    if (iCurrentAgendaViewType == AgendaView.ViewMode.WEEK)
     	s = utils.GetResStr(R.string.labSelectViewWeek);
-    if (iCurrentAgendaViewType == AgendaView.viewMode.MONTH)
+    if (iCurrentAgendaViewType == AgendaView.ViewMode.MONTH)
     	s = utils.GetResStr(R.string.labSelectViewMonth);  	
   	labSelectViewItem.setText(s);
   }
@@ -591,16 +590,16 @@ public class AnCal extends CommonActivity
   		//init view
 	    iCurrentAgendaViewType = viewType;
 	    
-	    ShowTopControls(iCurrentAgendaViewType != AgendaView.viewMode.TODAY);
+	    ShowTopControls(iCurrentAgendaViewType != AgendaView.ViewMode.TODAY);
 	    
 	    //change type
-	    if (iCurrentAgendaViewType == AgendaView.viewMode.TODAY)
+	    if (iCurrentAgendaViewType == AgendaView.ViewMode.TODAY)
 	    	CurrentAgendaView = AgendaViewToday;
-	    if (iCurrentAgendaViewType == AgendaView.viewMode.DAY)
+	    if (iCurrentAgendaViewType == AgendaView.ViewMode.DAY)
 	    	CurrentAgendaView = AgendaViewDay;
-	    if (iCurrentAgendaViewType == AgendaView.viewMode.WEEK)
+	    if (iCurrentAgendaViewType == AgendaView.ViewMode.WEEK)
 	    	CurrentAgendaView = AgendaViewWeek;
-	    if (iCurrentAgendaViewType == AgendaView.viewMode.MONTH)
+	    if (iCurrentAgendaViewType == AgendaView.ViewMode.MONTH)
 	    	CurrentAgendaView = AgendaViewMonth;
 
 	    if (CurrentAgendaView != null)
@@ -628,21 +627,21 @@ public class AnCal extends CommonActivity
   
   private void VisibleLayoutContentAdd()
   {
-  	if (iCurrentAgendaViewType == AgendaView.viewMode.TODAY)
+  	if (iCurrentAgendaViewType == AgendaView.ViewMode.TODAY)
 	  {
 	    scrollViewAgenda.addView(CurrentAgendaView.GetParentLayout());
 	    llayAgendaData.addView(scrollViewAgenda);
 	  }
-	  if (iCurrentAgendaViewType == AgendaView.viewMode.DAY)
+	  if (iCurrentAgendaViewType == AgendaView.ViewMode.DAY)
 	  {
 	    scrollViewAgenda.addView(CurrentAgendaView.GetParentLayout());
 	    llayAgendaData.addView(scrollViewAgenda);
 	  }
-	  if (iCurrentAgendaViewType == AgendaView.viewMode.WEEK)
+	  if (iCurrentAgendaViewType == AgendaView.ViewMode.WEEK)
 	  {
 	    llayAgendaData.addView(CurrentAgendaView.GetParentLayout());	    
 	  }
-	  if (iCurrentAgendaViewType == AgendaView.viewMode.MONTH)
+	  if (iCurrentAgendaViewType == AgendaView.ViewMode.MONTH)
 	  {
 	    llayAgendaData.addView(CurrentAgendaView.GetParentLayout());
 	  }

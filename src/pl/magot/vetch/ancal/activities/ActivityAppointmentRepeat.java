@@ -290,7 +290,7 @@ public class ActivityAppointmentRepeat extends Activity
   {  	  	
   	if (calRepeatEnd.getTimeInMillis() != 0)
 		{
-	    btnEndOnDate.setText(utils.GetLongDate(calRepeatEnd));
+	    btnEndOnDate.setText(AnCalDateUtils.formatMediumDate(this, calRepeatEnd));
 		} else {
 	    btnEndOnDate.setText(utils.GetResStr(R.string.labNoEndDate));
 		}

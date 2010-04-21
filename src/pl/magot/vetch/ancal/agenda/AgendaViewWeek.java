@@ -40,7 +40,7 @@ public class AgendaViewWeek extends AgendaView
 	@Override
 	public int GetViewType()
 	{
-		return viewMode.WEEK;
+		return ViewMode.WEEK;
 	}
 	
 	@Override
@@ -103,7 +103,7 @@ public class AgendaViewWeek extends AgendaView
 	{
 		Calendar calDate = Calendar.getInstance();
 		calDate.setTimeInMillis(item.GetDate().getTimeInMillis());
-		main.SetAgendaView(AgendaView.viewMode.DAY, calDate);
+		main.SetAgendaView(AgendaView.ViewMode.DAY, calDate);
 	}
 		
 	@Override

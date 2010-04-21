@@ -41,7 +41,7 @@ public class AgendaViewMonth extends AgendaView
 	@Override
 	public int GetViewType()
 	{
-		return viewMode.MONTH;
+		return ViewMode.MONTH;
 	}
 	
 	@Override
@@ -101,7 +101,7 @@ public class AgendaViewMonth extends AgendaView
 	{
 		Calendar calDate = Calendar.getInstance();
 		calDate.setTimeInMillis(item.getWeekStartDate().getTimeInMillis());
-		main.SetAgendaView(AgendaView.viewMode.WEEK, calDate);
+		main.SetAgendaView(AgendaView.ViewMode.WEEK, calDate);
 	}
 	
 	@Override

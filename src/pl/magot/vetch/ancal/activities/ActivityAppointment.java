@@ -7,6 +7,7 @@ package pl.magot.vetch.ancal.activities;
 
 import java.util.*;
 import pl.magot.vetch.widgets.*;
+import pl.magot.vetch.ancal.AnCalDateUtils;
 import pl.magot.vetch.ancal.CommonActivity;
 import pl.magot.vetch.ancal.R;
 import pl.magot.vetch.ancal.RepeatData;
@@ -274,7 +275,7 @@ public class ActivityAppointment extends CommonActivity
   {
   	String s = utils.GetResStr(R.string.strRepeatTypeNone);  	
   	String sUntil = utils.GetResStr(R.string.strRepeatInfoUntil);  	
-  	String sEndDate = (dateEndOn.getTimeInMillis() == 0)?"":" " + sUntil + " " + utils.GetLongDate(dateEndOn);
+  	String sEndDate = (dateEndOn.getTimeInMillis() == 0)?"":" " + sUntil + " " + AnCalDateUtils.formatMediumDate(this, dateEndOn);
   	//daily
   	if (iRepeatType == 1)
   		s = String.format(utils.GetResStr(R.string.strRepeatInfoDaily), iRepeatEvery, sEndDate);  		
@@ -292,12 +293,12 @@ public class ActivityAppointment extends CommonActivity
   
   private void UpdateStartDateTimeView()
   {
-  	btnStartDate.setText(utils.GetLongDate(dateStart));
+  	btnStartDate.setText(AnCalDateUtils.formatMediumDate(this, dateStart));
 		if (chkAllDay.isChecked())
 		{
 	  	btnStartTime.setText(utils.GetResStr(R.string.labNoTime));
 		} else {
-	  	btnStartTime.setText(utils.GetLongTime(dateStart, prefs.b24HourMode));
+	  	btnStartTime.setText(AnCalDateUtils.formatTime(this, dateStart));
 		}	
   }
   

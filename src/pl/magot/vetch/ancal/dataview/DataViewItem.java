@@ -26,7 +26,7 @@ public class DataViewItem
 	public long lPriority = -1;
 	public int iRepeatType = 0;
 	public int iRepeatEvery = 1;		
-	public int viewMode = AgendaView.viewMode.NONE;
+	public int viewMode = AgendaView.ViewMode.NONE;
 	
 	private long lRepeatDaysBitMask = 0;		
 	

@@ -71,7 +71,7 @@ public class DataViewTask extends DataView
 	public void FilterDataForView(DataViewItem item, final Calendar calStartDate, final int agendaViewType)
 	{		
 		//agenda view Today
-		if (agendaViewType == AgendaView.viewMode.TODAY)
+		if (agendaViewType == AgendaView.ViewMode.TODAY)
 		{
 			if (prefs.bShowAllTasks)
 			{
@@ -89,7 +89,7 @@ public class DataViewTask extends DataView
 		}
 		
 		//view for alarm
-		if (agendaViewType == AgendaView.viewMode.TODAY_ALARM)
+		if (agendaViewType == AgendaView.ViewMode.TODAY_ALARM)
 		{
 			if (!item.bDone)
 			{

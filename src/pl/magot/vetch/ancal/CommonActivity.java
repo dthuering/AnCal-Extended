@@ -2,7 +2,6 @@ package pl.magot.vetch.ancal;
 
 import java.util.Calendar;
 
-import de.theprojects.ancal.MessageType;
 import pl.magot.vetch.ancal.database.DataTable;
 import pl.magot.vetch.ancal.database.Database;
 import pl.magot.vetch.ancal.reminder.*;

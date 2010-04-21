@@ -106,7 +106,7 @@ public class AlarmDataView
 	private  DataViewTask dataViewTask = null;
 
 	//fields
-	private final int agendaViewType = AgendaView.viewMode.TODAY_ALARM;  
+	private final int agendaViewType = AgendaView.ViewMode.TODAY_ALARM;  
 	private Calendar calStartDate = Calendar.getInstance();
 	private AlarmsManager alarmsManager = null;
 

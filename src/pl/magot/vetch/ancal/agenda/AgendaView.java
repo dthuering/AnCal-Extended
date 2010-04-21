@@ -20,7 +20,7 @@ import android.widget.LinearLayout;
 public abstract class AgendaView
 {
 	//types
-	public class viewMode
+	public class ViewMode
 	{
 		public final static int NONE = 0;
 		public final static int TODAY = 1;
@@ -191,9 +191,9 @@ public abstract class AgendaView
 		
 		calViewStartDate.setFirstDayOfWeek(main.prefs.iFirstDayOfWeek);
 		
-		if (GetViewType() == viewMode.WEEK)
+		if (GetViewType() == ViewMode.WEEK)
 			UpdateStartDateForWeek();
-		if (GetViewType() == viewMode.MONTH)
+		if (GetViewType() == ViewMode.MONTH)
 			UpdateStartDateForMonth();
 	}
 
@@ -231,12 +231,12 @@ public abstract class AgendaView
 
 	public void SetPrevViewItem()
 	{
-		if (GetViewType() == viewMode.DAY)
+		if (GetViewType() == ViewMode.DAY)
 			calViewStartDate.add(Calendar.DAY_OF_YEAR, -1);
-		if (GetViewType() == viewMode.WEEK)
+		if (GetViewType() == ViewMode.WEEK)
 			calViewStartDate.add(Calendar.WEEK_OF_YEAR, -1);
 		
-		if (GetViewType() == viewMode.MONTH)
+		if (GetViewType() == ViewMode.MONTH)
 		{
 			iMonthViewCurrentMonth--;
 			if (iMonthViewCurrentMonth == -1)
@@ -259,12 +259,12 @@ public abstract class AgendaView
 	
 	public void SetNextViewItem()
 	{
-		if (GetViewType() == viewMode.DAY)
+		if (GetViewType() == ViewMode.DAY)
 			calViewStartDate.add(Calendar.DAY_OF_YEAR, 1);
-		if (GetViewType() == viewMode.WEEK)
+		if (GetViewType() == ViewMode.WEEK)
 			calViewStartDate.add(Calendar.WEEK_OF_YEAR, 1);
 		
-		if (GetViewType() == viewMode.MONTH)
+		if (GetViewType() == ViewMode.MONTH)
 		{
 			iMonthViewCurrentMonth++;
 			if (iMonthViewCurrentMonth == 12)

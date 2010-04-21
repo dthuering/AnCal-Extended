@@ -54,20 +54,16 @@ public class DataViewAppointment extends DataView
 					return -1;
 				if (bAllDay2)
 					return 1;
-				
-				if (Utils.GetTimeAsSeconds(date1cmp) > Utils.GetTimeAsSeconds(date2cmp))
-					return 1;
-				if (Utils.GetTimeAsSeconds(date1cmp) < Utils.GetTimeAsSeconds(date2cmp))
-					return -1;
 
-				if (Utils.GetTimeAsSeconds(date1cmp) == Utils.GetTimeAsSeconds(date2cmp))
-				{
-					String s1 = item1.sSubject;
-					String s2 = item2.sSubject;				
-					return s1.compareTo(s2);
-				}				
+                final int dateCompare = date1cmp.compareTo(date2cmp);
+                if (dateCompare == 0) {
+                    String s1 = item1.sSubject;
+                    String s2 = item2.sSubject;             
+                    return s1.compareTo(s2);
+                } else {
+                    return dateCompare;
+                }
 			}
-			return 0;
 		}		
 	};
 	
@@ -133,7 +129,7 @@ public class DataViewAppointment extends DataView
 		repeat.SetStartDate(calItemStartDate);
 				
 		//filter item for date range
-		if (agendaViewType != AgendaView.viewMode.NONE)
+		if (agendaViewType != AgendaView.ViewMode.NONE)
 		{
 			item.Clear();
 			
@@ -176,7 +172,7 @@ public class DataViewAppointment extends DataView
 		
 		int iDayValue = 1;
 		//cache date values backward for alarm service
-		if (agendaViewType == AgendaView.viewMode.TODAY_ALARM)
+		if (agendaViewType == AgendaView.ViewMode.TODAY_ALARM)
 			iDayValue = -1;
 		
 		calStartDateForCache.setTimeInMillis(calStartDate.getTimeInMillis());

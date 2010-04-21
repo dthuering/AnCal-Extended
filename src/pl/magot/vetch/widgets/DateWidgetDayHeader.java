@@ -4,8 +4,10 @@ package pl.magot.vetch.widgets;
 
 import java.util.*;
 
+import pl.magot.vetch.ancal.AnCalDateUtils;
 import pl.magot.vetch.ancal.Utils;
 import android.content.*;
+import android.text.format.DateUtils;
 import android.view.*;
 import android.widget.LinearLayout.LayoutParams;
 import android.graphics.*;
@@ -53,7 +55,7 @@ public class DateWidgetDayHeader extends View
 			pt.setColor(dayStyle.getColorTextHeader(bHoliday));
 			
 			final int iTextPosY = getTextHeight();
-			final String sDayName = new Utils(getContext()).getShortWeekDay(iWeekDay);
+			final String sDayName = AnCalDateUtils.getAbbrevDayOfWeekString(iWeekDay);
 			
 			//draw day name
 			final int iDayNamePosX = (int)rect.left + ((int)rect.width() >> 1) - ((int)pt.measureText(sDayName) >> 1);			
