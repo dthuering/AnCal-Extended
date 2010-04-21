@@ -6,7 +6,6 @@ package pl.magot.vetch.ancal;
 
 
 import java.util.*;
-import java.text.*;
 
 import pl.magot.vetch.ancal.agenda.*;
 import pl.magot.vetch.ancal.database.*;
@@ -14,7 +13,6 @@ import pl.magot.vetch.ancal.dataview.*;
 import pl.magot.vetch.ancal.views.*;
 import pl.magot.vetch.ancal.reminder.AlarmService;
 import pl.magot.vetch.widgets.*;
-import android.text.format.DateUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
@@ -33,8 +31,6 @@ public class AnCal extends CommonActivity
 	
 	protected AnCal base = null;
 	private Calendar dateToday = Calendar.getInstance();
-	private SimpleDateFormat dateFormatFull = new SimpleDateFormat("EE, dd-MM-yyyy");
-	private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM yyyy");
 	
 	//fields
   private int iCurrentAgendaViewType = AgendaView.ViewMode.TODAY; 
