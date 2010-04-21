@@ -7,8 +7,8 @@ import java.util.*;
 import pl.magot.vetch.ancal.Prefs;
 import pl.magot.vetch.ancal.RepeatData;
 import pl.magot.vetch.ancal.RepeatDataValue;
-import pl.magot.vetch.ancal.Utils;
 import pl.magot.vetch.ancal.agenda.AgendaView;
+import pl.magot.vetch.ancal.agenda.AgendaView.ViewMode;
 import pl.magot.vetch.ancal.database.DataRowAppointment;
 import pl.magot.vetch.ancal.database.Database;
 import android.database.Cursor;
@@ -108,7 +108,7 @@ public class DataViewAppointment extends DataView
 	}
 	
 	@Override
-	public void FilterDataForView(DataViewItem item, final Calendar calStartDate, final int agendaViewType)
+	public void FilterDataForView(DataViewItem item, final Calendar calStartDate, final ViewMode agendaViewType)
 	{
 		//set repeat comparer data
 		repeat.SetRepeatTypeAsInt(item.iRepeatType);
@@ -166,7 +166,7 @@ public class DataViewAppointment extends DataView
 	}
 	
 	@Override
-	protected void FilterDataPrepare(final Calendar calStartDate, final int agendaViewType)
+	protected void FilterDataPrepare(final Calendar calStartDate, final ViewMode agendaViewType)
 	{		
 		final int iDaysCount = getDaysRangeForView(agendaViewType);
 		

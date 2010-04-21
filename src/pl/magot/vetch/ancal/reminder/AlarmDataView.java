@@ -8,6 +8,7 @@ import pl.magot.vetch.ancal.Utils;
 import pl.magot.vetch.ancal.database.*;
 import pl.magot.vetch.ancal.dataview.*;
 import pl.magot.vetch.ancal.agenda.*;
+import pl.magot.vetch.ancal.agenda.AgendaView.ViewMode;
 
 
 public class AlarmDataView
@@ -106,7 +107,7 @@ public class AlarmDataView
 	private  DataViewTask dataViewTask = null;
 
 	//fields
-	private final int agendaViewType = AgendaView.ViewMode.TODAY_ALARM;  
+	private final ViewMode agendaViewType = AgendaView.ViewMode.TODAY_ALARM;  
 	private Calendar calStartDate = Calendar.getInstance();
 	private AlarmsManager alarmsManager = null;
 

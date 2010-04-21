@@ -11,6 +11,7 @@ import pl.magot.vetch.ancal.views.ViewTodayItemTask;
 import pl.magot.vetch.ancal.views.ViewTodayItemNote;
 import pl.magot.vetch.ancal.views.ViewTodayItem;
 import pl.magot.vetch.ancal.views.ViewTodayItemHeader;
+import pl.magot.vetch.ancal.views.ViewTodayItemHeader.ViewType;
 import android.os.*;
 import android.view.*;
 import android.view.ViewGroup.LayoutParams;
@@ -20,14 +21,14 @@ import android.widget.LinearLayout;
 public abstract class AgendaView
 {
 	//types
-	public class ViewMode
+	public enum ViewMode
 	{
-		public final static int NONE = 0;
-		public final static int TODAY = 1;
-		public final static int DAY = 2;
-		public final static int WEEK = 3;
-		public final static int MONTH = 4;
-		public final static int TODAY_ALARM = 5;
+	    NONE,
+	    TODAY,
+	    DAY,
+	    WEEK,
+	    MONTH,
+	    TODAY_ALARM
 	};
 	
 	//types
@@ -136,7 +137,7 @@ public abstract class AgendaView
 	}	
 	
 	public abstract void Rebuild();
-	public abstract int GetViewType();
+	public abstract ViewMode GetViewType();
 	public abstract int GetViewIndex();
 	
 	public void doHeaderItemClick(View v, ViewTodayItemHeader.ViewType type)

@@ -50,7 +50,7 @@ public class AgendaViewDay extends AgendaView
 	}
 
 	@Override
-	public int GetViewType()
+	public ViewMode GetViewType()
 	{
 		return ViewMode.DAY;
 	}

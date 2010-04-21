@@ -4,6 +4,7 @@ package pl.magot.vetch.ancal.dataview;
 
 import java.util.Calendar;
 import pl.magot.vetch.ancal.agenda.AgendaView;
+import pl.magot.vetch.ancal.agenda.AgendaView.ViewMode;
 
 
 public class DataViewItem
@@ -26,7 +27,7 @@ public class DataViewItem
 	public long lPriority = -1;
 	public int iRepeatType = 0;
 	public int iRepeatEvery = 1;		
-	public int viewMode = AgendaView.ViewMode.NONE;
+	public ViewMode viewMode = AgendaView.ViewMode.NONE;
 	
 	private long lRepeatDaysBitMask = 0;		
 	

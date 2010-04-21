@@ -4,6 +4,7 @@ package pl.magot.vetch.ancal.dataview;
 
 import java.util.*;
 import pl.magot.vetch.ancal.agenda.AgendaView;
+import pl.magot.vetch.ancal.agenda.AgendaView.ViewMode;
 import pl.magot.vetch.ancal.database.Database;
 import pl.magot.vetch.ancal.Prefs;
 import android.database.*;
@@ -29,9 +30,9 @@ public abstract class DataView
 
 	protected abstract void AddItem(Cursor cr);
 	
-	protected abstract void FilterDataPrepare(final Calendar calStartDate, final int agendaViewType);
+	protected abstract void FilterDataPrepare(final Calendar calStartDate, final ViewMode agendaViewType);
 	
-	protected abstract void FilterDataForView(DataViewItem item, final Calendar calStartDate, final int agendaViewType);
+	protected abstract void FilterDataForView(DataViewItem item, final Calendar calStartDate, ViewMode agendaViewType);
 	
 	protected abstract void SortView();
 	
@@ -77,7 +78,7 @@ public abstract class DataView
 		return result;
   }
     
-	public DataViewItem GetRow(int index, final int agendaViewType)	
+	public DataViewItem GetRow(int index, final ViewMode agendaViewType)	
 	{
 		try
 		{
@@ -89,7 +90,7 @@ public abstract class DataView
 		return null;
 	}
 	
-	public int GetRowsCountForView(final int agendaViewType)
+	public int GetRowsCountForView(final ViewMode agendaViewType)
 	{
 		int iCount = 0;
 		for (int i = 0; i < rows.size(); i++)
@@ -103,28 +104,24 @@ public abstract class DataView
 		return rows.size();
 	}
 		
-	public int getDaysRangeForView(final int agendaViewType)
+	public int getDaysRangeForView(final ViewMode agendaViewType)
 	{	
-		if (agendaViewType == AgendaView.ViewMode.TODAY)
-			return 0;
-
-		if (agendaViewType == AgendaView.ViewMode.DAY)
-			return 0;
-
-		if (agendaViewType == AgendaView.ViewMode.WEEK)
-			return 7;
-
-		if (agendaViewType == AgendaView.ViewMode.MONTH)
-			return 42;
-	
-		//counting days backward !!!
-		if (agendaViewType == AgendaView.ViewMode.TODAY_ALARM)
-			return 7;
-		
-		return 0;
+	    switch (agendaViewType) {
+	        case TODAY:
+            case DAY:
+	            return 0;
+            case WEEK:
+                return 7;
+            case MONTH:
+                return 42;
+            case TODAY_ALARM:
+                return 7;
+            default:
+                throw new IllegalArgumentException("unknown ViewMode!");
+	    }
 	}			
 		
-	public void FilterData(final Calendar calStartDate, final int agendaViewType)
+	public void FilterData(final Calendar calStartDate, final ViewMode agendaViewType)
 	{
 		calViewStartDate.setTimeInMillis(calStartDate.getTimeInMillis());
 		calViewStartDate.setFirstDayOfWeek(prefs.iFirstDayOfWeek);

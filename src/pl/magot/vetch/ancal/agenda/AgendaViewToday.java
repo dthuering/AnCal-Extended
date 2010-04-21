@@ -46,7 +46,7 @@ public class AgendaViewToday extends AgendaView
 	}
 
 	@Override
-	public int GetViewType()
+	public ViewMode GetViewType()
 	{
 		return ViewMode.TODAY;
 	}

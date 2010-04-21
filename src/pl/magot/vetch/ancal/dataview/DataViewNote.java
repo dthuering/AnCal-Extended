@@ -4,6 +4,7 @@ package pl.magot.vetch.ancal.dataview;
 
 import java.util.*;
 import pl.magot.vetch.ancal.Prefs;
+import pl.magot.vetch.ancal.agenda.AgendaView.ViewMode;
 import pl.magot.vetch.ancal.database.DataRowNote;
 import pl.magot.vetch.ancal.database.Database;
 import android.database.Cursor;
@@ -45,13 +46,13 @@ public class DataViewNote extends DataView
 	}
 	
 	@Override
-	public void FilterDataForView(DataViewItem item, final Calendar calStartDate, final int agendaViewType)
+	public void FilterDataForView(DataViewItem item, final Calendar calStartDate, final ViewMode agendaViewType)
 	{
 		item.viewMode = agendaViewType;
 	}
 	
 	@Override
-	protected void FilterDataPrepare(final Calendar calStartDate, final int agendaViewType)
+	protected void FilterDataPrepare(final Calendar calStartDate, final ViewMode agendaViewType)
 	{
 		
 	}

@@ -39,7 +39,7 @@ public class AgendaViewMonth extends AgendaView
 	}
 	
 	@Override
-	public int GetViewType()
+	public ViewMode GetViewType()
 	{
 		return ViewMode.MONTH;
 	}

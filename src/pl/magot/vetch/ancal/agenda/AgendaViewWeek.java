@@ -38,7 +38,7 @@ public class AgendaViewWeek extends AgendaView
 	}
 	
 	@Override
-	public int GetViewType()
+	public ViewMode GetViewType()
 	{
 		return ViewMode.WEEK;
 	}
