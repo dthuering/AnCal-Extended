@@ -7,8 +7,7 @@ import java.util.*;
 import pl.magot.vetch.ancal.Prefs;
 import pl.magot.vetch.ancal.RepeatData;
 import pl.magot.vetch.ancal.RepeatDataValue;
-import pl.magot.vetch.ancal.agenda.AgendaView;
-import pl.magot.vetch.ancal.agenda.AgendaView.ViewMode;
+import pl.magot.vetch.ancal.agenda.AgendaViewType;
 import pl.magot.vetch.ancal.database.DataRowAppointment;
 import pl.magot.vetch.ancal.database.Database;
 import android.database.Cursor;
@@ -108,7 +107,7 @@ public class DataViewAppointment extends DataView
 	}
 	
 	@Override
-	public void FilterDataForView(DataViewItem item, final Calendar calStartDate, final ViewMode agendaViewType)
+	public void FilterDataForView(DataViewItem item, final Calendar calStartDate, final AgendaViewType agendaViewType)
 	{
 		//set repeat comparer data
 		repeat.SetRepeatTypeAsInt(item.iRepeatType);
@@ -129,7 +128,7 @@ public class DataViewAppointment extends DataView
 		repeat.SetStartDate(calItemStartDate);
 				
 		//filter item for date range
-		if (agendaViewType != AgendaView.ViewMode.NONE)
+		if (agendaViewType != AgendaViewType.NONE)
 		{
 			item.Clear();
 			
@@ -166,13 +165,13 @@ public class DataViewAppointment extends DataView
 	}
 	
 	@Override
-	protected void FilterDataPrepare(final Calendar calStartDate, final ViewMode agendaViewType)
+	protected void FilterDataPrepare(final Calendar calStartDate, final AgendaViewType agendaViewType)
 	{		
 		final int iDaysCount = getDaysRangeForView(agendaViewType);
 		
 		int iDayValue = 1;
 		//cache date values backward for alarm service
-		if (agendaViewType == AgendaView.ViewMode.TODAY_ALARM)
+		if (agendaViewType == AgendaViewType.TODAY_ALARM)
 			iDayValue = -1;
 		
 		calStartDateForCache.setTimeInMillis(calStartDate.getTimeInMillis());

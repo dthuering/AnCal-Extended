@@ -6,8 +6,7 @@ import java.util.*;
 
 import pl.magot.vetch.ancal.Prefs;
 import pl.magot.vetch.ancal.Utils;
-import pl.magot.vetch.ancal.agenda.AgendaView;
-import pl.magot.vetch.ancal.agenda.AgendaView.ViewMode;
+import pl.magot.vetch.ancal.agenda.AgendaViewType;
 import pl.magot.vetch.ancal.database.DataRowTask;
 import pl.magot.vetch.ancal.database.Database;
 import android.database.Cursor;
@@ -69,10 +68,10 @@ public class DataViewTask extends DataView
 	}
 	
 	@Override
-	public void FilterDataForView(DataViewItem item, final Calendar calStartDate, final ViewMode agendaViewType)
+	public void FilterDataForView(DataViewItem item, final Calendar calStartDate, final AgendaViewType agendaViewType)
 	{		
 		//agenda view Today
-		if (agendaViewType == AgendaView.ViewMode.TODAY)
+		if (agendaViewType == AgendaViewType.TODAY)
 		{
 			if (prefs.bShowAllTasks)
 			{
@@ -90,7 +89,7 @@ public class DataViewTask extends DataView
 		}
 		
 		//view for alarm
-		if (agendaViewType == AgendaView.ViewMode.TODAY_ALARM)
+		if (agendaViewType == AgendaViewType.TODAY_ALARM)
 		{
 			if (!item.bDone)
 			{
@@ -108,7 +107,7 @@ public class DataViewTask extends DataView
 	}
 		
 	@Override
-	protected void FilterDataPrepare(final Calendar calStartDate, final ViewMode agendaViewType)
+	protected void FilterDataPrepare(final Calendar calStartDate, final AgendaViewType agendaViewType)
 	{
 		
 	}

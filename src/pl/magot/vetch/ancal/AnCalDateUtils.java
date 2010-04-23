@@ -1,5 +1,6 @@
 package pl.magot.vetch.ancal;
 
+import java.text.DateFormatSymbols;
 import java.util.Calendar;
 
 import android.content.Context;
@@ -26,6 +27,10 @@ public abstract class AnCalDateUtils {
 	
 	public static String getAbbrevDayOfWeekString(int day) {
 	    return DateUtils.getDayOfWeekString(day, DateUtils.LENGTH_MEDIUM);
+	}
+	
+	public static String[] getWeekDays() {
+	    return new DateFormatSymbols().getWeekdays();	    
 	}
 
 	private AnCalDateUtils() { /* NOOP */ }

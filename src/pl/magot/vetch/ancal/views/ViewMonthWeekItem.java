@@ -2,14 +2,12 @@
 package pl.magot.vetch.ancal.views;
 
 
-import java.text.DateFormatSymbols;
 import java.util.Calendar;
 
 import pl.magot.vetch.ancal.AnCalDateUtils;
 import pl.magot.vetch.ancal.Utils;
 import android.content.Context;
 import android.graphics.*;
-import android.text.format.DateUtils;
 import android.view.*;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;

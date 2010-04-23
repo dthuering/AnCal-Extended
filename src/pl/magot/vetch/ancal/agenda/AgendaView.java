@@ -11,7 +11,6 @@ import pl.magot.vetch.ancal.views.ViewTodayItemTask;
 import pl.magot.vetch.ancal.views.ViewTodayItemNote;
 import pl.magot.vetch.ancal.views.ViewTodayItem;
 import pl.magot.vetch.ancal.views.ViewTodayItemHeader;
-import pl.magot.vetch.ancal.views.ViewTodayItemHeader.ViewType;
 import android.os.*;
 import android.view.*;
 import android.view.ViewGroup.LayoutParams;
@@ -20,17 +19,6 @@ import android.widget.LinearLayout;
 
 public abstract class AgendaView
 {
-	//types
-	public enum ViewMode
-	{
-	    NONE,
-	    TODAY,
-	    DAY,
-	    WEEK,
-	    MONTH,
-	    TODAY_ALARM
-	};
-	
 	//types
 	public interface OnViewItemClick
 	{
@@ -137,7 +125,7 @@ public abstract class AgendaView
 	}	
 	
 	public abstract void Rebuild();
-	public abstract ViewMode GetViewType();
+	public abstract AgendaViewType GetViewType();
 	public abstract int GetViewIndex();
 	
 	public void doHeaderItemClick(View v, ViewTodayItemHeader.ViewType type)
@@ -192,28 +180,15 @@ public abstract class AgendaView
 		
 		calViewStartDate.setFirstDayOfWeek(main.prefs.iFirstDayOfWeek);
 		
-		if (GetViewType() == ViewMode.WEEK)
+		if (GetViewType() == AgendaViewType.WEEK)
 			UpdateStartDateForWeek();
-		if (GetViewType() == ViewMode.MONTH)
+		if (GetViewType() == AgendaViewType.MONTH)
 			UpdateStartDateForMonth();
 	}
 
 	private void UpdateStartDateForWeek()
 	{
-		int iDay = 0;		
-		int iStartDay = main.prefs.iFirstDayOfWeek;			
-		if (iStartDay == Calendar.MONDAY)
-		{
-			iDay = calViewStartDate.get(Calendar.DAY_OF_WEEK) - Calendar.MONDAY;			
-			if (iDay < 0)
-				iDay = 6;
-		}
-		if (iStartDay == Calendar.SUNDAY)
-		{
-			iDay = calViewStartDate.get(Calendar.DAY_OF_WEEK) - Calendar.SUNDAY;
-			if (iDay < 0)
-				iDay = 6;
-		}		
+        int iDay = calViewStartDate.get(Calendar.DAY_OF_WEEK) - main.prefs.iFirstDayOfWeek;            
 		calViewStartDate.add(Calendar.DAY_OF_WEEK, -iDay);
 	}
 
@@ -232,12 +207,12 @@ public abstract class AgendaView
 
 	public void SetPrevViewItem()
 	{
-		if (GetViewType() == ViewMode.DAY)
+		if (GetViewType() == AgendaViewType.DAY)
 			calViewStartDate.add(Calendar.DAY_OF_YEAR, -1);
-		if (GetViewType() == ViewMode.WEEK)
+		if (GetViewType() == AgendaViewType.WEEK)
 			calViewStartDate.add(Calendar.WEEK_OF_YEAR, -1);
 		
-		if (GetViewType() == ViewMode.MONTH)
+		if (GetViewType() == AgendaViewType.MONTH)
 		{
 			iMonthViewCurrentMonth--;
 			if (iMonthViewCurrentMonth == -1)
@@ -260,12 +235,12 @@ public abstract class AgendaView
 	
 	public void SetNextViewItem()
 	{
-		if (GetViewType() == ViewMode.DAY)
+		if (GetViewType() == AgendaViewType.DAY)
 			calViewStartDate.add(Calendar.DAY_OF_YEAR, 1);
-		if (GetViewType() == ViewMode.WEEK)
+		if (GetViewType() == AgendaViewType.WEEK)
 			calViewStartDate.add(Calendar.WEEK_OF_YEAR, 1);
 		
-		if (GetViewType() == ViewMode.MONTH)
+		if (GetViewType() == AgendaViewType.MONTH)
 		{
 			iMonthViewCurrentMonth++;
 			if (iMonthViewCurrentMonth == 12)

@@ -10,7 +10,6 @@ import android.content.*;
 import android.graphics.*;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
-import android.text.format.DateUtils;
 import android.view.*;
 
 

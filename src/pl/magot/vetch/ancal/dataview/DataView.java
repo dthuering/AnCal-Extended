@@ -3,8 +3,8 @@ package pl.magot.vetch.ancal.dataview;
 
 
 import java.util.*;
-import pl.magot.vetch.ancal.agenda.AgendaView;
-import pl.magot.vetch.ancal.agenda.AgendaView.ViewMode;
+
+import pl.magot.vetch.ancal.agenda.AgendaViewType;
 import pl.magot.vetch.ancal.database.Database;
 import pl.magot.vetch.ancal.Prefs;
 import android.database.*;
@@ -30,9 +30,9 @@ public abstract class DataView
 
 	protected abstract void AddItem(Cursor cr);
 	
-	protected abstract void FilterDataPrepare(final Calendar calStartDate, final ViewMode agendaViewType);
+	protected abstract void FilterDataPrepare(final Calendar calStartDate, final AgendaViewType agendaViewType);
 	
-	protected abstract void FilterDataForView(DataViewItem item, final Calendar calStartDate, ViewMode agendaViewType);
+	protected abstract void FilterDataForView(DataViewItem item, final Calendar calStartDate, AgendaViewType agendaViewType);
 	
 	protected abstract void SortView();
 	
@@ -78,7 +78,7 @@ public abstract class DataView
 		return result;
   }
     
-	public DataViewItem GetRow(int index, final ViewMode agendaViewType)	
+	public DataViewItem GetRow(int index, final AgendaViewType agendaViewType)	
 	{
 		try
 		{
@@ -90,7 +90,7 @@ public abstract class DataView
 		return null;
 	}
 	
-	public int GetRowsCountForView(final ViewMode agendaViewType)
+	public int GetRowsCountForView(final AgendaViewType agendaViewType)
 	{
 		int iCount = 0;
 		for (int i = 0; i < rows.size(); i++)
@@ -104,7 +104,7 @@ public abstract class DataView
 		return rows.size();
 	}
 		
-	public int getDaysRangeForView(final ViewMode agendaViewType)
+	public int getDaysRangeForView(final AgendaViewType agendaViewType)
 	{	
 	    switch (agendaViewType) {
 	        case TODAY:
@@ -121,7 +121,7 @@ public abstract class DataView
 	    }
 	}			
 		
-	public void FilterData(final Calendar calStartDate, final ViewMode agendaViewType)
+	public void FilterData(final Calendar calStartDate, final AgendaViewType agendaViewType)
 	{
 		calViewStartDate.setTimeInMillis(calStartDate.getTimeInMillis());
 		calViewStartDate.setFirstDayOfWeek(prefs.iFirstDayOfWeek);
@@ -131,7 +131,7 @@ public abstract class DataView
 		for (int i = 0; i < rows.size(); i++)
 		{
 			DataViewItem item = rows.get(i);
-			item.viewMode = AgendaView.ViewMode.NONE;
+			item.viewMode = AgendaViewType.NONE;
 			FilterDataForView(item, calViewStartDate, agendaViewType);
 		}
 	}
