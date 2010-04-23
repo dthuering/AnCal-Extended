@@ -13,8 +13,5 @@
         <item>week</item>
         <item>month</item>
     </array>
-    <array name="firstDayOfWeek">
-        <item>sunday</item>
-        <item>monday</item>
-    </array>
+    
 </resources>

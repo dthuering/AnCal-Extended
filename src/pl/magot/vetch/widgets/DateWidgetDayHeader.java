@@ -5,9 +5,7 @@ package pl.magot.vetch.widgets;
 import java.util.*;
 
 import pl.magot.vetch.ancal.AnCalDateUtils;
-import pl.magot.vetch.ancal.Utils;
 import android.content.*;
-import android.text.format.DateUtils;
 import android.view.*;
 import android.widget.LinearLayout.LayoutParams;
 import android.graphics.*;
